@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "es2015",
-    "outDir": "dist",
+    "outDir": "public/dist",
     "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
