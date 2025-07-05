@@ -1,29 +1,29 @@
 // vite.config.ts
-import { defineConfig } from 'vite';
-import { svelte }    from '@sveltejs/vite-plugin-svelte';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { defineConfig } from "vite";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
 
 const rootDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  // ▶︎ look for index.html here:
-  root: rootDir,
+	// ▶︎ look for index.html here:
+	root: rootDir,
 
-  // ▶︎ serve everything in `public/` at `/…`
-  publicDir: 'public',
+	// ▶︎ serve everything in `public/` at `/…`
+	publicDir: "public",
 
-  plugins: [svelte()],
+	plugins: [svelte()],
 
-  server: {
-    open: true,
-    port: 5173,
-  },
+	server: {
+		open: true,
+		port: 5173,
+	},
 
-  build: {
-    // ▶︎ emit the prod build into public/dist
-    outDir: 'public/dist',
-    // ▶︎ clear only public/dist, not your style.css
-    emptyOutDir: true,
-  },
+	build: {
+		// ▶︎ emit the prod build into public/dist
+		outDir: "public/dist",
+		// ▶︎ clear only public/dist, not your style.css
+		emptyOutDir: true,
+	},
 });

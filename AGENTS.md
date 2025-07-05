@@ -15,6 +15,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
   configuration files under `frontend/` so run them from the repo root.
 - `bun run lint` – runs `svelte-check`, `biome lint` and `dotnet format` to
   check front-end, markdown/config files and backend code.
+- `frontend/tsconfig.json` includes `node` typings so linters resolve built-in
+  modules.
 - `README.md` – project overview and quickstart instructions.
 
 Always update this `AGENTS.md` with repository changes so LLM agents can operate

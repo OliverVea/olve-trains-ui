@@ -12,7 +12,8 @@ All build scripts assume you run them from the repository root using **bun**.
 - `index.html` – entry HTML file, loads `src/main.ts` via Vite.
 - `public/style.css` – global styles used by `index.html`.
 - `svelte.config.js` and `vite.config.ts` – build configuration.
-- `tsconfig.json` – TypeScript configuration with strict mode enabled.
+- `tsconfig.json` – TypeScript configuration with strict mode enabled and
+  includes Node.js typings so `svelte-check` can resolve built-in modules.
 
 ## Coding style
 - Prefer modern ES6 syntax.
