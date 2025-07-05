@@ -1,21 +1,21 @@
 # Olve Trains UI
 [See AGENTS.md for repository guidelines.](./AGENTS.md)
 
-This is a vanilla TypeScript web application bundled with esbuild.
+This project is a Svelte + TypeScript web application bundled with Vite.
 
 ## Getting Started
 
-Install dependencies and build the project:
+Install dependencies and start the dev server:
 
 ```bash
-npm install
-npm run build
+bun install
+bun run dev
 ```
 
-Start the dev server:
+Build for production:
 
 ```bash
-npm run dev
+bun run build
 ```
 
 ## Running Tests
@@ -24,7 +24,7 @@ Unit tests run with [Vitest](https://vitest.dev/) using JSDOM and Mock Service W
 No backend is required. Run the suite with:
 
 ```bash
-npm test
+bun run test
 ```
 
 ### Adding Fixtures

@@ -7,9 +7,14 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["svelte"],
+    "moduleResolution": "node"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "src/**/*.svelte",
+    "vite.config.ts",
+    "vite-env.d.ts"
   ]
 }
