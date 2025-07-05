@@ -28,10 +28,11 @@ All build scripts assume you run them from the repository root using **bun**.
 - All exported interfaces and enums in `src/api/` include documentation comments for clarity.
 
 ## Development
-- Install dependencies with `bun install` from the repository root.
-- Start the dev server with `bun run dev`.
-- Build once with `bun run build`.
-- Run `bun run lint` to lint front-end sources and config files via **Biome**.
+ - Install dependencies with `bun install` from the repository root or run
+   `./setup-bun.sh` to install Bun and install packages in one step.
+ - Start the dev server with `bun run dev`.
+ - Build once with `bun run build`.
+ - Run `bun run lint` to lint front-end sources and config files via **Biome**.
 
 ## Testing
 - Tests are written with **Vitest** using the `jsdom` environment.

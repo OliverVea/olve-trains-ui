@@ -13,6 +13,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
 - `backend/setup-dotnet.sh` – script to install the .NET SDK and pre-restore
   backend packages for offline use.
+- `setup-bun.sh` – script at the repository root that installs Bun and runs
+  `bun install` to fetch front-end dependencies.
 - `install-act.sh` – helper to install Docker (if missing) and the `act` CLI
   for running GitHub Actions workflows locally.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
