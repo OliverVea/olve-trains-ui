@@ -24,8 +24,11 @@ using **bun**. Run backend commands from the `backend/` directory using the
   configuration files under `frontend/` so run them from the repo root.
 - `api/` – generated OpenAPI specification for the backend.
 - `README.md` – project overview and quickstart instructions.
+- `codedog.yml` – configuration for CodeDog AI pull request reviews.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
+- `.github/workflows/codedog-review.yml` – AI-powered PR review using CodeDog.
+  Requires an `OPENAI_API_KEY` secret.
 ## Linting
 - Run `bun run lint` to check formatting and style across the repo.
   It lints frontend and configuration files via **biome** and verifies C#

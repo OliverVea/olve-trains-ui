@@ -67,3 +67,17 @@ act <event>
 ```
 
 For example, `act push` executes the `push` jobs locally.
+
+## AI-powered Pull Request Reviews
+
+This repository uses [CodeDog](https://codedog.ai) to automatically review every
+pull request. The workflow defined in `.github/workflows/codedog-review.yml`
+invokes the action with the OpenAI backend.
+
+To enable it, add an `OPENAI_API_KEY` secret under your repository settings. The
+key must allow access to the OpenAI API. After pushing a pull request, CodeDog
+will comment with a summary highlighting potential bugs, style issues and
+missing tests.
+
+A minimal `codedog.yml` controls the model and files to scan. The default
+configuration reviews `*.cs` and `*.ts` sources while ignoring Markdown files.
