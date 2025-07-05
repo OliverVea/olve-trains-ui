@@ -1,12 +1,13 @@
 # Repo Guidelines
 
-This project is a vanilla TypeScript web application. Source files live in `src/` and are compiled to `dist/` using `tsc`.
+This project is a vanilla TypeScript web application. Source files live in `src/` and are bundled with **esbuild** into `public/dist/`.
 
 - `src/` – TypeScript source files.
 - `src/api/` – API resource specifications shared with the front-end.
-- `dist/` – Compiled JavaScript output from `tsc`.
-- `index.html` – entry HTML file, references `dist/index.js`.
-- `style.css` – global styles used by `index.html`.
+- `public/` – static assets served by the dev server.
+- `public/dist/` – bundled JavaScript output from `esbuild`.
+- `public/index.html` – entry HTML file, references `dist/index.js`.
+- `public/style.css` – global styles used by `index.html`.
 - `tsconfig.json` – TypeScript configuration enabling strict mode and `es2015` modules.
 - `package.json` – npm scripts for building and serving the project.
 
@@ -23,7 +24,7 @@ This project is a vanilla TypeScript web application. Source files live in `src/
 
 ## Development
 - Install dependencies with `npm install`.
-- Build once with `npm run build`.
-- Start the dev server with `npm run dev`. It compiles TypeScript in watch mode and serves the project via `lite-server`.
+- Build once with `npm run build` (bundles with esbuild).
+- Start the dev server with `npm run dev`. It runs esbuild in watch mode and serves the `public/` directory via `lite-server`.
 
 Always update this `AGENTS.md` with repository changes or additional guidelines so that LLM agents can correctly operate on the project.
