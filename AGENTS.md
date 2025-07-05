@@ -12,7 +12,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
 - `dist/` – compiled JavaScript utilities.
-- `package.json` – scripts for dev, build, lint and test. These reference
+- `package.json` – scripts for dev, build and test. These reference
   configuration files under `frontend/` so run them from the repo root.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that installs
   dependencies with **bun**, runs `bun run lint` then `bun run test`.
