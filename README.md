@@ -53,10 +53,10 @@ Integration tests will be introduced alongside the backend as it evolves.
 ## Running GitHub Actions locally
 
 To test workflows defined under `.github/workflows/` without pushing code, use
-the `install-act.sh` script:
+the `scripts/install-act.sh` script:
 
 ```bash
-sudo ./install-act.sh
+sudo ./scripts/install-act.sh
 ```
 
 This installs Docker (if necessary) and the [`act` CLI](https://github.com/nektos/act)

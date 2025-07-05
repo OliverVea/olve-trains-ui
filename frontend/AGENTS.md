@@ -29,7 +29,7 @@ All build scripts assume you run them from the repository root using **bun**.
 
 ## Development
  - Install dependencies with `bun install` from the repository root or run
-   `./setup-bun.sh` to install Bun and install packages in one step.
+   `./scripts/setup-bun.sh` to install Bun and install packages in one step.
  - Start the dev server with `bun run dev`.
  - Build once with `bun run build`.
  - Run `bun run lint` to lint front-end sources and config files via **Biome**.

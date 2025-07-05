@@ -11,12 +11,13 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `frontend/` – current Svelte + TypeScript UI. See `frontend/AGENTS.md` for all
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
-- `backend/setup-dotnet.sh` – script to install the .NET SDK and pre-restore
-  backend packages for offline use.
-- `setup-bun.sh` – script at the repository root that installs Bun and runs
-  `bun install` to fetch front-end dependencies.
-- `install-act.sh` – helper to install Docker (if missing) and the `act` CLI
-  for running GitHub Actions workflows locally.
+- `scripts/` – helper scripts for preparing a development environment:
+  - `setup-bun.sh` installs Bun and runs `bun install`.
+  - `setup-dotnet.sh` installs the .NET SDK and pre-restores backend packages.
+  - `install-act.sh` installs Docker (if missing) and the `act` CLI for running
+    GitHub Actions locally.
+  - `setup-agent.sh` runs the above scripts and then sets the `AGENT_SETUP`
+    environment variable.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
   Run `bun run apigen` to regenerate `api/api-spec.json`.
   These scripts reference

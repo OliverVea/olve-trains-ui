@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ -n "${AGENT_SETUP:-}" ]]; then
+  echo "AGENT_SETUP is set. These scripts are only for setting up the agent." >&2
+  exit 1
+fi
+
 # -----------------------------------------------------------------------------
 # install-act.sh
 #
