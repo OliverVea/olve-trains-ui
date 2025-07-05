@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+      - run: bun install --frozen-lockfile
+      - run: bun run lint
+      - run: bun run test
