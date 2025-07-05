@@ -73,7 +73,3 @@ onMount(fetchLogs);
   <button id="command-send" on:click={runCommand}>Run</button>
   <div id="command-response" class="command-response">{commandResponse}</div>
 </section>
-
-<style>
-  /* styles provided by existing style.css will apply */
-</style>
