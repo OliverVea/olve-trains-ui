@@ -5,18 +5,21 @@
     "dev": "vite --config frontend/vite.config.ts",
     "build": "vite build --config frontend/vite.config.ts",
     "preview": "vite preview --config frontend/vite.config.ts",
-    "test": "vitest run --config frontend/vitest.config.ts"
+    "test": "vitest run --config frontend/vitest.config.ts",
+    "lint": "svelte-check --tsconfig frontend/tsconfig.json && biome lint . && cd backend && dotnet format --verify-no-changes"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.0.6",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/svelte": "^5.0.1",
-    "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "jsdom": "^26.1.0",
     "msw": "^2.10.3",
+    "svelte": "^4.2.7",
+    "svelte-check": "^4.2.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
-    "svelte": "^4.2.7",
     "vitest": "^3.2.4"
   },
   "type": "module"

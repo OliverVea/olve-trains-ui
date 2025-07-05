@@ -41,6 +41,17 @@ No backend is required. Run the suite with:
 bun run test
 ```
 
+## Linting
+
+Run all linters for the project:
+
+```bash
+bun run lint
+```
+
+This checks the Svelte front-end with `svelte-check`, markdown and configuration
+files with `biome`, and C# backend code using `dotnet format`.
+
 ### Adding Fixtures
 
 1. Place JSON responses under `frontend/tests/fixtures/`.
