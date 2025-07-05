@@ -1,7 +1,7 @@
 const API_BASE = 'http://localhost:5000';
 const LOG_PARENT_ID = 'log-parent';
 
-import { LogMessage, LogLevel } from './api/logMessage';
+import { LogMessage, LogLevel } from './api/logMessage.js';
 
 /** Convert a raw log JSON object into a typed {@link LogMessage}. */
 function parseLog(item: any): LogMessage {
