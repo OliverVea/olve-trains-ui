@@ -11,6 +11,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `frontend/` – current Svelte + TypeScript UI. See `frontend/AGENTS.md` for all
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
+- `backend/setup-dotnet.sh` – script to install the .NET SDK and pre-restore
+  backend packages for offline use.
 - `package.json` – scripts for dev, build and test. These reference
   configuration files under `frontend/` so run them from the repo root.
 - `README.md` – project overview and quickstart instructions.
