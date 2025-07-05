@@ -2,7 +2,7 @@
 
 This directory hosts the ASP.NET Core Minimal API.
 
-- Built with .NET 8 using `Microsoft.NET.Sdk.Web`.
+- Built with .NET 9 using `Microsoft.NET.Sdk.Web`.
 - To run locally:
 
 ```bash
