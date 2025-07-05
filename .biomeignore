@@ -1,0 +1,5 @@
+# Ignore build outputs and dependencies
+node_modules
+frontend/public/dist
+backend/bin
+backend/obj
