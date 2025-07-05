@@ -12,6 +12,11 @@ repository root using **bun**.
 - `dist/` – compiled JavaScript utilities.
 - `package.json` – scripts for dev, build and test. These reference
   configuration files under `frontend/` so run them from the repo root.
+- `bun run release` – bumps the package version using Conventional Commits and
+  updates `CHANGELOG.md`. Creates a git tag.
+- `bun run build` – builds the Svelte frontend with hashed asset filenames and
+  writes `frontend/public/dist/manifest.json` for deployment.
+- `bun run ci` – run the GitHub Actions workflow locally using the act CLI.
 - `README.md` – project overview and quickstart instructions.
 
 Always update this `AGENTS.md` with repository changes so LLM agents can operate

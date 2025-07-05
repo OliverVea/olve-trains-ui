@@ -5,7 +5,9 @@
     "dev": "vite --config frontend/vite.config.ts",
     "build": "vite build --config frontend/vite.config.ts",
     "preview": "vite preview --config frontend/vite.config.ts",
-    "test": "vitest run --config frontend/vitest.config.ts"
+    "test": "vitest run --config frontend/vitest.config.ts",
+    "release": "standard-version",
+    "ci": "act -j test -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
@@ -17,7 +19,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
     "svelte": "^4.2.7",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "standard-version": "^9.5.0"
   },
   "type": "module"
 }

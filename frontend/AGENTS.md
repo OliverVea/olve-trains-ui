@@ -8,7 +8,8 @@ All build scripts assume you run them from the repository root using **bun**.
 - `src/` – TypeScript and `.svelte` source files.
 - `src/api/` – API resource specifications shared with the front-end.
 - `public/` – static assets including `index.html` and `style.css`.
-- `public/dist/` – bundled output from Vite.
+ - `public/dist/` – production bundles with hashed filenames. Vite also writes
+   `manifest.json` here for server-side HTML injection.
 - `index.html` – entry HTML file, loads `src/main.ts` via Vite.
 - `public/style.css` – global styles used by `index.html`.
 - `svelte.config.js` and `vite.config.ts` – build configuration.

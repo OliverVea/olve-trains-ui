@@ -25,5 +25,13 @@ export default defineConfig({
     outDir: 'public/dist',
     // ▶︎ clear only public/dist, not your style.css
     emptyOutDir: true,
+    manifest: 'manifest.json',
+    rollupOptions: {
+      output: {
+        entryFileNames: '[name]-[hash].js',
+        chunkFileNames: 'chunk-[hash].js',
+        assetFileNames: '[name]-[hash][extname]'
+      }
+    }
   },
 });

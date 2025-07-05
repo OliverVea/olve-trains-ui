@@ -26,6 +26,16 @@ Build the front-end for production:
 bun run build
 ```
 
+The build outputs hashed filenames under `frontend/public/dist` and writes a
+`manifest.json` mapping entry names to hashed files. Use this manifest when
+serving the static HTML.
+
+To create a new release with a semantic version bump and changelog entry run:
+
+```bash
+bun run release
+```
+
 ## Running Tests
 
 Front-end unit tests run with [Vitest](https://vitest.dev/) using JSDOM and Mock Service Worker.
@@ -34,6 +44,23 @@ No backend is required. Run the suite with:
 ```bash
 bun run test
 ```
+
+## Running CI Locally
+
+This project uses GitHub Actions for testing. Install the [act](https://github.com/nektos/act) CLI and run:
+
+```bash
+bun run ci
+```
+
+To install act on macOS use Homebrew:
+
+```bash
+brew install act
+```
+
+On Linux download a release from the GitHub page and place the `act` binary somewhere in your `PATH`.
+
 
 ### Adding Fixtures
 
