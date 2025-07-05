@@ -31,6 +31,7 @@ All build scripts assume you run them from the repository root using **bun**.
 - Install dependencies with `bun install` from the repository root.
 - Start the dev server with `bun run dev`.
 - Build once with `bun run build`.
+- Check formatting and basic lint rules with `bun run lint`.
 
 ## Testing
 - Tests are written with **Vitest** using the `jsdom` environment.
