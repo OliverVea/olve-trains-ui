@@ -2,6 +2,7 @@
 [See AGENTS.md for repository guidelines.](./AGENTS.md)
 
 This project is a Svelte + TypeScript web application bundled with Vite.
+All front-end code now lives under `frontend/`.
 
 ## Getting Started
 
@@ -29,8 +30,8 @@ bun run test
 
 ### Adding Fixtures
 
-1. Place JSON responses under `tests/fixtures/`.
-2. Map endpoints to fixtures in `tests/handlers.ts` using MSW.
-3. Write tests in `tests/*.test.ts` and import any utilities from `src/` as needed.
+1. Place JSON responses under `frontend/tests/fixtures/`.
+2. Map endpoints to fixtures in `frontend/tests/handlers.ts` using MSW.
+3. Write tests in `frontend/tests/*.test.ts` and import any utilities from `frontend/src/` as needed.
 
-A sample test is provided in `tests/app.test.ts`.
+A sample test is provided in `frontend/tests/app.test.ts`.
