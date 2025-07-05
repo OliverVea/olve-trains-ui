@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-# Path to your .csproj file (relative to script location)
-PROJECT_PATH="./backend/backend.csproj"
+if [[ -n "${AGENT_SETUP:-}" ]]; then
+  echo "AGENT_SETUP is set. These scripts are only for setting up the agent." >&2
+  exit 1
+fi
+
+# Path to your .csproj file (relative to repository root)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+PROJECT_PATH="$REPO_ROOT/backend/backend.csproj"
 
 # .NET SDK version to install
 SDK_VERSION="9.0"
