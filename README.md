@@ -8,8 +8,7 @@ TypeScript front‑end in `frontend/` and a minimal ASP.NET Core backend under
 ## Repository Layout
 
 - `frontend/` – Svelte front‑end UI (see `frontend/AGENTS.md` for details)
- - `backend/` – ASP.NET Core Minimal API server
-- `dist/` – compiled JavaScript helpers
+- `backend/` – ASP.NET Core Minimal API server
 
 ## Getting Started
 
