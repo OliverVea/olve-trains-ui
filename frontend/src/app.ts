@@ -37,7 +37,7 @@ async function renderLogs(): Promise<void> {
   container.innerHTML = '<h2>Server Logs</h2>';
   try {
     const logs = await fetchLogMessages();
-    logs.forEach(log => {
+    logs.forEach((log) => {
       const entry = document.createElement('div');
       entry.className = `log-entry log-${LogLevel[log.level]}`;
       entry.textContent = formatLog(log);
@@ -51,7 +51,9 @@ async function renderLogs(): Promise<void> {
   }
 }
 
-async function runCommand(command: string): Promise<{ ok: boolean; message: string }> {
+async function runCommand(
+  command: string,
+): Promise<{ ok: boolean; message: string }> {
   const result = await executeCommand(command);
   if (result.ok) {
     return {
@@ -59,7 +61,7 @@ async function runCommand(command: string): Promise<{ ok: boolean; message: stri
       message: `✅ Command "${command}" succeeded`,
     };
   }
-  const errMsg = result.errors!.map(e => e.message).join('; ');
+  const errMsg = result.errors!.map((e) => e.message).join('; ');
   return {
     ok: false,
     message: `❌ Command "${command}" failed: ${errMsg}`,
@@ -90,7 +92,7 @@ function setupCommandRunner(): void {
     }
   });
 
-  input.addEventListener('keydown', e => {
+  input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       button.click();

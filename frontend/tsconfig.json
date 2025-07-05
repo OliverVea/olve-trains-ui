@@ -11,10 +11,5 @@
     "types": ["svelte"],
     "moduleResolution": "node"
   },
-  "include": [
-    "src/**/*",
-    "src/**/*.svelte",
-    "vite.config.ts",
-    "vite-env.d.ts"
-  ]
+  "include": ["src/**/*", "src/**/*.svelte", "vite.config.ts", "vite-env.d.ts"]
 }

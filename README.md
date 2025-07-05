@@ -1,4 +1,5 @@
 # Olve Trains
+
 [See AGENTS.md for repository guidelines.](./AGENTS.md)
 
 This repository hosts the Olve Trains application. It includes the Svelte +
@@ -8,7 +9,7 @@ TypeScript front‑end in `frontend/` and a minimal ASP.NET Core backend under
 ## Repository Layout
 
 - `frontend/` – Svelte front‑end UI (see `frontend/AGENTS.md` for details)
- - `backend/` – ASP.NET Core Minimal API server
+- `backend/` – ASP.NET Core Minimal API server
 - `dist/` – compiled JavaScript helpers
 
 ## Getting Started

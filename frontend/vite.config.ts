@@ -1,6 +1,6 @@
 // vite.config.ts
 import { defineConfig } from 'vite';
-import { svelte }    from '@sveltejs/vite-plugin-svelte';
+import { svelte } from '@sveltejs/vite-plugin-svelte';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 

@@ -15,12 +15,14 @@ All build scripts assume you run them from the repository root using **bun**.
 - `tsconfig.json` – TypeScript configuration with strict mode enabled.
 
 ## Coding style
+
 - Prefer modern ES6 syntax.
 - Use explicit types where possible.
 - Keep TypeScript `strict` mode enabled.
 - UI code uses Svelte components written in `.svelte` files.
 
 ### API resource specs
+
 - Files in `src/api/` define TypeScript interfaces mirroring backend C# records.
 - The `ApiError` structure describes failed operations.
 - A `Success` marker response is used for endpoints without body data.
@@ -28,11 +30,14 @@ All build scripts assume you run them from the repository root using **bun**.
 - All exported interfaces and enums in `src/api/` include documentation comments for clarity.
 
 ## Development
+
 - Install dependencies with `bun install` from the repository root.
 - Start the dev server with `bun run dev`.
 - Build once with `bun run build`.
+- Check formatting and basic lint rules with `bun run lint`.
 
 ## Testing
+
 - Tests are written with **Vitest** using the `jsdom` environment.
 - Mock Service Worker (MSW) intercepts `fetch` calls; handlers live in `tests/handlers.ts`.
 - Fixtures reside in `tests/fixtures/` and are loaded by MSW.
