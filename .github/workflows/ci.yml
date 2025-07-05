@@ -17,5 +17,6 @@ jobs:
         with:
           dotnet-version: '9.0.x'
       - run: bun install --frozen-lockfile
+      - run: bun run apigen
       - run: bun run lint
       - run: bun run test

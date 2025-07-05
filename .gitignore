@@ -2,3 +2,5 @@ node_modules/
 public/dist/
 package-lock.json
 dist/
+.kiota/
+frontend/api/.kiota.log

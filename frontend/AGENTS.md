@@ -7,6 +7,7 @@ All build scripts assume you run them from the repository root using **bun**.
 
 - `src/` – TypeScript and `.svelte` source files.
 - `src/api/` – API resource specifications shared with the front-end.
+- `api/` – generated TypeScript client refreshed by `bun run apigen`.
 - `public/` – static assets including `index.html` and `style.css`.
 - `public/dist/` – bundled output from Vite.
 - `index.html` – entry HTML file, loads `src/main.ts` via Vite.
