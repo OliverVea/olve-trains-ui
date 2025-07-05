@@ -1,32 +1,32 @@
 # Repo Guidelines
 
-This project is a vanilla TypeScript web application. Source files live in `src/` and are bundled with **esbuild** into `public/dist/`.
+This project is a Svelte + TypeScript web application bundled with **Vite**. Source files live in `src/` and are built to `public/dist/`.
 
-- `src/` – TypeScript source files.
+- `src/` – TypeScript and `.svelte` source files.
 - `src/api/` – API resource specifications shared with the front-end.
-- `public/` – static assets served by the dev server.
-- `public/dist/` – bundled JavaScript output from `esbuild`.
-- `public/index.html` – entry HTML file, references `dist/index.js`.
+- `public/` – static assets including `index.html` and `style.css`.
+- `public/dist/` – bundled output from Vite.
+- `public/index.html` – entry HTML file, loads `src/main.ts` via Vite.
 - `public/style.css` – global styles used by `index.html`.
-- `tsconfig.json` – TypeScript configuration enabling strict mode and `es2015` modules.
-- `package.json` – npm scripts for building and serving the project.
+- `svelte.config.js` and `vite.config.ts` – build configuration.
+- `tsconfig.json` – TypeScript configuration with strict mode enabled.
+- `package.json` – scripts for building and serving the project with **bun**.
 - `README.md` – project overview and quickstart instructions; links back to this AGENTS file.
 
 ## Coding style
 - Prefer modern ES6 syntax.
 - Use explicit types where possible.
 - Keep TypeScript `strict` mode enabled.
-- No frameworks are used; code is plain TypeScript and DOM APIs.
+- UI code uses Svelte components written in `.svelte` files.
 
 ### API resource specs
 - Files in `src/api/` define TypeScript interfaces mirroring backend C# records.
-- `LogMessage` maps to the server's `LogMessage` struct. Enum `LogLevel` is
-  numeric (0 = Debug, 1 = Info, …).
+- `LogMessage` maps to the server's `LogMessage` struct. Enum `LogLevel` is numeric (0 = Debug, 1 = Info, …).
 
 ## Development
-- Install dependencies with `npm install`.
-- Build once with `npm run build` (bundles with esbuild).
-- Start the dev server with `npm run dev`. It runs esbuild in watch mode and serves the `public/` directory via `lite-server`.
+- Install dependencies with `bun install`.
+- Start the dev server with `bun run dev` (Vite).
+- Build once with `bun run build`.
 
 Always update this `AGENTS.md` with repository changes or additional guidelines so that LLM agents can correctly operate on the project.
 
@@ -34,5 +34,5 @@ Always update this `AGENTS.md` with repository changes or additional guidelines 
 - Tests are written with **Vitest** using the `jsdom` environment.
 - Mock Service Worker (MSW) intercepts `fetch` calls; handlers live in `tests/handlers.ts`.
 - Fixtures reside in `tests/fixtures/` and are loaded by MSW.
-- Run tests with `npm test`. No backend services are required.
+- Run tests with `bun run test`. No backend services are required.
 - Sample tests can be found under `tests/` and use Testing Library helpers.

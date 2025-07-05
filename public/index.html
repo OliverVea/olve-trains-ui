@@ -4,30 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Log Viewer</title>
-  <link rel="stylesheet" href="style.css" />
-  <!-- load as module so we can use top-level await and export/import if needed -->
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Web Page</h1>
-  </header>
-
-  <section id="log-parent" class="logs-container">
-    <h2>Server Logs</h2>
-  </section>
-
-  <!-- new: command form -->
-  <section class="command-runner">
-    <input
-      id="command-input"
-      type="text"
-      placeholder="Enter command…"
-      autocomplete="off"
-    />
-    <button id="command-send">Run</button>
-    <div id="command-response" class="command-response"></div>
-  </section>
-
-  <script src="dist/index.js" type="module"></script>
+  <div id="app"></div>
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>
