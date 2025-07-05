@@ -1,7 +1,9 @@
-const API_BASE = 'http://localhost:5000';
 const LOG_PARENT_ID = 'log-parent';
 
 import { LogMessage, LogLevel } from './api/logMessage.js';
+import { ApiError } from './api/error.js';
+import { fetchLogs } from './services/logService.js';
+import { runCommand as executeCommand } from './services/commandService.js';
 
 /** Convert a raw log JSON object into a typed {@link LogMessage}. */
 function parseLog(item: any): LogMessage {
@@ -22,9 +24,11 @@ function formatLog(log: LogMessage): string {
 }
 
 async function fetchLogMessages(): Promise<LogMessage[]> {
-  const resp = await fetch(`${API_BASE}/logs`);
-  if (!resp.ok) throw new Error(`Fetch logs failed: ${resp.status}`);
-  const data: any[] = await resp.json();
+  const result = await fetchLogs();
+  if (Array.isArray(result) && 'severity' in result[0]) {
+    throw new Error((result as ApiError[])[0].message);
+  }
+  const data = result as any[];
   return data.map(parseLog);
 }
 
@@ -47,12 +51,19 @@ async function renderLogs(): Promise<void> {
   }
 }
 
-async function runCommand(command: string): Promise<{ ok: boolean; message: string; body: string }> {
-  const resp = await fetch(`${API_BASE}/command/${encodeURIComponent(command)}`);
-  const text = resp.ok
-    ? `✅ Command "${command}" succeeded`
-    : `❌ Command "${command}" failed (${resp.status})`;
-  return { ok: resp.ok, message: text, body: await resp.text() };
+async function runCommand(command: string): Promise<{ ok: boolean; message: string }> {
+  const result = await executeCommand(command);
+  if (result.ok) {
+    return {
+      ok: true,
+      message: `✅ Command "${command}" succeeded`,
+    };
+  }
+  const errMsg = result.errors!.map(e => e.message).join('; ');
+  return {
+    ok: false,
+    message: `❌ Command "${command}" failed: ${errMsg}`,
+  };
 }
 
 function setupCommandRunner(): void {
