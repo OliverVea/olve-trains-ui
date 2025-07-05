@@ -6,7 +6,8 @@
     "build": "vite build --config frontend/vite.config.ts",
     "preview": "vite preview --config frontend/vite.config.ts",
     "test": "vitest run --config frontend/vitest.config.ts",
-    "lint": "biome lint . --reporter json && cd backend && dotnet format --verify-no-changes"
+    "lint": "biome lint . --reporter json && cd backend && dotnet format --verify-no-changes",
+    "apigen": "dotnet build backend/backend.csproj -p:OpenApiGenerateDocuments=true"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
