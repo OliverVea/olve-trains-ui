@@ -28,3 +28,10 @@ This project is a vanilla TypeScript web application. Source files live in `src/
 - Start the dev server with `npm run dev`. It runs esbuild in watch mode and serves the `public/` directory via `lite-server`.
 
 Always update this `AGENTS.md` with repository changes or additional guidelines so that LLM agents can correctly operate on the project.
+
+## Testing
+- Tests are written with **Vitest** using the `jsdom` environment.
+- Mock Service Worker (MSW) intercepts `fetch` calls; handlers live in `tests/handlers.ts`.
+- Fixtures reside in `tests/fixtures/` and are loaded by MSW.
+- Run tests with `npm test`. No backend services are required.
+- Sample tests can be found under `tests/` and use Testing Library helpers.
