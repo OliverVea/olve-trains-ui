@@ -10,6 +10,7 @@ This project is a vanilla TypeScript web application. Source files live in `src/
 - `public/style.css` – global styles used by `index.html`.
 - `tsconfig.json` – TypeScript configuration enabling strict mode and `es2015` modules.
 - `package.json` – npm scripts for building and serving the project.
+- `README.md` – project overview and quickstart instructions; links back to this AGENTS file.
 
 ## Coding style
 - Prefer modern ES6 syntax.

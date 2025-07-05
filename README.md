@@ -1,4 +1,5 @@
 # Olve Trains UI
+[See AGENTS.md for repository guidelines.](./AGENTS.md)
 
 This is a vanilla TypeScript web application bundled with esbuild.
 
