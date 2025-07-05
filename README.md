@@ -49,3 +49,21 @@ bun run test
 
 A sample test is provided in `frontend/tests/app.test.ts`.
 Integration tests will be introduced alongside the backend as it evolves.
+
+## Running GitHub Actions locally
+
+To test workflows defined under `.github/workflows/` without pushing code, use
+the `install-act.sh` script:
+
+```bash
+sudo ./install-act.sh
+```
+
+This installs Docker (if necessary) and the [`act` CLI](https://github.com/nektos/act)
+for simulating GitHub Actions in Docker. After installing, run workflows with:
+
+```bash
+act <event>
+```
+
+For example, `act push` executes the `push` jobs locally.
