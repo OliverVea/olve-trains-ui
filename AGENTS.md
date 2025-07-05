@@ -20,8 +20,13 @@ This project is a Svelte + TypeScript web application bundled with **Vite**. Sou
 - UI code uses Svelte components written in `.svelte` files.
 
 ### API resource specs
-- Files in `src/api/` define TypeScript interfaces mirroring backend C# records.
-- `LogMessage` maps to the server's `LogMessage` struct. Enum `LogLevel` is numeric (0 = Debug, 1 = Info, …).
+- Files in `src/api/` define TypeScript interfaces mirroring backend C# records,
+  the `ApiError` structure used for failed operations, and a `Success` marker
+  response for endpoints without body data.
+- `LogMessage` maps to the server's `LogMessage` struct. Enum `LogLevel` is
+  numeric (0 = Debug, 1 = Info, …).
+- All exported interfaces and enums in `src/api/` include documentation
+  comments for clarity.
 
 ## Development
 - Install dependencies with `bun install`.
