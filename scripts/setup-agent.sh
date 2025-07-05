@@ -10,7 +10,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 "$SCRIPT_DIR/setup-bun.sh"
 "$SCRIPT_DIR/setup-dotnet.sh"
-"$SCRIPT_DIR/install-act.sh"
+#"$SCRIPT_DIR/install-act.sh"
 
 export AGENT_SETUP=1
 
