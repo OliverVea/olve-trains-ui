@@ -15,6 +15,8 @@ All build scripts assume you run them from the repository root using **bun**.
 - `tsconfig.json` – TypeScript configuration with strict mode enabled.
 - `@microsoft/kiota` is installed at the repo root for generating a TypeScript
   API client when needed.
+- `src/generated/api/` – Kiota generated TypeScript client from the backend
+  spec. Run `bun run apigen` at the repository root to update these files.
 
 ## Coding style
 - Prefer modern ES6 syntax.
