@@ -18,12 +18,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
     GitHub Actions locally.
   - `setup-agent.sh` runs the above scripts and then sets the `AGENT_SETUP`
     environment variable.
-- `package.json` – scripts for dev, build, lint, test and API spec generation.
--  Run `bun run apigen` to regenerate `api/api-spec.json`.
--  These scripts reference
-  configuration files under `frontend/` so run them from the repo root.
-  Dev dependency `@microsoft/kiota` provides the CLI for generating
-  TypeScript API clients from the OpenAPI spec.
+- `package.json` – scripts for dev, build, lint, test and API spec generation. Run `bun run apigen` to regenerate `api/api-spec.json`. These scripts reference configuration files under `frontend/` so run them from the repo root. Dev dependency `@microsoft/kiota` provides the CLI for generating TypeScript API clients from the OpenAPI spec.
 - `api/` – generated OpenAPI specification for the backend.
 - `docs/` – documentation such as dependency usage guides.
 - `README.md` – project overview and quickstart instructions.
