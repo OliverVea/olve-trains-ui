@@ -9,6 +9,7 @@ TypeScript front‑end in `frontend/` and a minimal ASP.NET Core backend under
 
 - `frontend/` – Svelte front‑end UI (see `frontend/AGENTS.md` for details)
 - `backend/` – ASP.NET Core Minimal API server
+- `docs/dependencies/` – docs for third-party packages such as `Olve.Results.md`
 
 ## Getting Started
 
