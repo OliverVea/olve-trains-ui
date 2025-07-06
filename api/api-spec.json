@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "backend | v1",
+    "title": "Olve.Trains.UI.Server | v1",
     "version": "1.0.0"
   },
   "paths": {
-    "/ping": {
+    "/": {
       "get": {
         "tags": [
-          "backend"
+          "Olve.Trains.UI.Server"
         ],
         "responses": {
           "200": {
@@ -28,7 +28,7 @@
   "components": { },
   "tags": [
     {
-      "name": "backend"
+      "name": "Olve.Trains.UI.Server"
     }
   ]
 }

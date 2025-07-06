@@ -3,9 +3,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <!-- Directory where OpenAPI specs are written when generation is triggered -->
     <OpenApiDocumentsDirectory>$(MSBuildProjectDirectory)/../api</OpenApiDocumentsDirectory>
-    <!-- Filename for generated specs when enabled -->
     <OpenApiGenerateDocumentsOptions>--file-name api-spec</OpenApiGenerateDocumentsOptions>
   </PropertyGroup>
   <ItemGroup>

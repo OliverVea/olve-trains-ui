@@ -7,7 +7,7 @@
     "preview": "vite preview --config frontend/vite.config.ts",
     "test": "vitest run --config frontend/vitest.config.ts",
     "lint": "biome lint . --reporter json && cd backend && dotnet format --verify-no-changes",
-    "apigen": "dotnet build backend/backend.csproj -p:OpenApiGenerateDocuments=true && kiota generate --language TypeScript -d api/api-spec.json -o frontend/src/generated/api --class-name ApiClient --namespace-name Olve.Trains.ApiClient"
+    "apigen": "dotnet build backend/Olve.Trains.UI.Server.csproj -p:OpenApiGenerateDocuments=true && kiota generate --language TypeScript -d api/api-spec.json -o frontend/src/generated/api --class-name ApiClient --namespace-name Olve.Trains.ApiClient"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
