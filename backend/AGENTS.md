@@ -14,6 +14,7 @@ dotnet run
 ```
 
 - The API exposes a single endpoint `GET /ping` that returns `"pong"`.
+- `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.
 - Generate the OpenAPI spec and TypeScript client with `bun run apigen`.

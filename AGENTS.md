@@ -29,6 +29,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   Olve.Trains.ApiClient` behind the scenes.
 - `api/` – generated OpenAPI specification for the backend.
 - `README.md` – project overview and quickstart instructions.
+- `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md`.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
 ## Linting
