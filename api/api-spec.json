@@ -23,9 +23,164 @@
           }
         }
       }
+    },
+    "/run-command": {
+      "post": {
+        "tags": [
+          "Olve.Trains.UI.Server"
+        ],
+        "operationId": "RunCommand",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunCommandRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultProblem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "components": { },
+  "components": {
+    "schemas": {
+      "Exception": {
+        "type": "object",
+        "properties": {
+          "targetSite": {
+            "$ref": "#/components/schemas/MethodBase"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
+          "innerException": {
+            "$ref": "#/components/schemas/Exception"
+          },
+          "helpLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "hResult": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stackTrace": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "IPath": { },
+      "MethodBase": {
+        "nullable": true
+      },
+      "ProblemOriginInformation": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "lineNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "linkString": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ResultProblem": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "severity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "args": {
+            "type": "array",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/Exception"
+          },
+          "originInformation": {
+            "$ref": "#/components/schemas/ProblemOriginInformation"
+          }
+        }
+      },
+      "RunCommandRequest": {
+        "required": [
+          "command"
+        ],
+        "type": "object",
+        "properties": {
+          "command": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      }
+    }
+  },
   "tags": [
     {
       "name": "Olve.Trains.UI.Server"

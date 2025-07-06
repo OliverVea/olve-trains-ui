@@ -31,6 +31,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `README.md` – project overview and quickstart instructions.
 - `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md`.
 - `backend/IPathJsonConverter.cs` – JSON converter for `IPath` using `Path.Create`.
+- `backend/RunCommand.cs` – defines `IRunCommandHandler` and a logging
+  implementation used by the `/run-command` endpoint.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
 ## Linting
