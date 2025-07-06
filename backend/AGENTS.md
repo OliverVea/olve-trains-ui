@@ -13,7 +13,10 @@ cd backend
 dotnet run
 ```
 
-- The API exposes a single endpoint `GET /ping` that returns `"pong"`.
+- The API exposes `GET /` returning a simple string.
+- `POST /run-command` accepts `{ command: string }` and runs it using
+  `IRunCommandHandler`. The default `LoggingRunCommandHandler` just logs
+  the command.
 - `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.
