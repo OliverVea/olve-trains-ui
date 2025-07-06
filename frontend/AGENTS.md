@@ -13,6 +13,8 @@ All build scripts assume you run them from the repository root using **bun**.
 - `public/style.css` – global styles used by `index.html`.
 - `svelte.config.js` and `vite.config.ts` – build configuration.
 - `tsconfig.json` – TypeScript configuration with strict mode enabled.
+- `@microsoft/kiota` is installed at the repo root for generating a TypeScript
+  API client when needed.
 
 ## Coding style
 - Prefer modern ES6 syntax.
