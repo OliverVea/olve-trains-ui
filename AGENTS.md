@@ -11,6 +11,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `frontend/` – current Svelte + TypeScript UI. See `frontend/AGENTS.md` for all
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
+  The server exposes `GET /ping` and `POST /command`.
 - `scripts/` – helper scripts for preparing a development environment:
   - `setup-bun.sh` installs Bun and runs `bun install`.
   - `setup-dotnet.sh` installs the .NET SDK and pre-restores backend packages.

@@ -23,9 +23,220 @@
           }
         }
       }
+    },
+    "/command": {
+      "post": {
+        "tags": [
+          "backend"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResultProblem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "components": { },
+  "components": {
+    "schemas": {
+      "ElementType": {
+        "type": "integer"
+      },
+      "Exception": {
+        "type": "object",
+        "properties": {
+          "targetSite": {
+            "$ref": "#/components/schemas/MethodBase"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "object",
+            "nullable": true
+          },
+          "innerException": {
+            "$ref": "#/components/schemas/Exception"
+          },
+          "helpLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "hResult": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stackTrace": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "nullable": true
+      },
+      "IPath": {
+        "type": "object",
+        "properties": {
+          "elementType": {
+            "$ref": "#/components/schemas/ElementType"
+          },
+          "absolute": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IPath2"
+            },
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PathPlatform"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PathType"
+          },
+          "parentPure": {
+            "$ref": "#/components/schemas/IPurePath"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "IPath2": {
+        "type": "object",
+        "properties": {
+          "elementType": {
+            "$ref": "#/components/schemas/ElementType"
+          },
+          "absolute": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IPath2"
+            },
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PathPlatform"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PathType"
+          },
+          "parentPure": {
+            "$ref": "#/components/schemas/IPurePath"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "MethodBase": {
+        "nullable": true
+      },
+      "PathPlatform": {
+        "type": "integer"
+      },
+      "PathType": {
+        "type": "integer"
+      },
+      "ProblemOriginInformation": {
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "lineNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "linkString": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "ResultProblem": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "severity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "args": {
+            "type": "array",
+            "nullable": true
+          },
+          "source": {
+            "type": "string",
+            "nullable": true
+          },
+          "exception": {
+            "$ref": "#/components/schemas/Exception"
+          },
+          "originInformation": {
+            "$ref": "#/components/schemas/ProblemOriginInformation"
+          }
+        }
+      }
+    }
+  },
   "tags": [
     {
       "name": "backend"

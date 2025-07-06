@@ -13,7 +13,10 @@ cd backend
 dotnet run
 ```
 
-- The API exposes a single endpoint `GET /ping` that returns `"pong"`.
+- The API exposes two endpoints:
+  - `GET /ping` returns `"pong"`.
+  - `POST /command` runs a command provided in the request body and returns
+    `400` on failure.
 - `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.
