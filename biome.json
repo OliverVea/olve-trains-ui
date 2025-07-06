@@ -5,5 +5,14 @@
   },
   "linter": {
     "enabled": true
+  },
+  "files": {
+    "includes": [
+      "**",                       
+      "!node_modules/**",         
+      "!frontend/public/dist/**", 
+      "!backend/bin/**",          
+      "!backend/obj/**"           
+    ]
   }
 }

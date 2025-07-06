@@ -14,7 +14,7 @@ public static class ApplicationConfiguration
     public static WebApplication ConfigureApplication(this WebApplication app)
     {
         app.MapGet("/", () => "Olve.Trains.UI.Server");
-        
+
         return app;
     }
 }
