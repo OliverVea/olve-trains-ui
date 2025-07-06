@@ -7,10 +7,11 @@
     "preview": "vite preview --config frontend/vite.config.ts",
     "test": "vitest run --config frontend/vitest.config.ts",
     "lint": "biome lint . --reporter json && cd backend && dotnet format --verify-no-changes",
-    "apigen": "dotnet build backend/backend.csproj -p:OpenApiGenerateDocuments=true"
+    "apigen": "dotnet build backend/backend.csproj -p:OpenApiGenerateDocuments=true && kiota generate -l typescript -d api/api-spec.json -c ApiClient -o frontend/src/generated/api"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
+    "@microsoft/kiota": "^1.27.0",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",

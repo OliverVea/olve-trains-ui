@@ -25,6 +25,12 @@ Build the front-end for production:
 bun run build
 ```
 
+Regenerate the OpenAPI spec and TypeScript client:
+
+```bash
+bun run apigen
+```
+
 Run the backend API:
 
 ```bash

@@ -16,7 +16,8 @@ dotnet run
 - The API exposes a single endpoint `GET /ping` that returns `"pong"`.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.
-- Generate the OpenAPI spec with `bun run apigen`. This writes
-  `api/api-spec.json` at the repository root.
+- Generate the OpenAPI spec and TypeScript client with `bun run apigen`.
+  This writes the spec to `api/api-spec.json` and overwrites
+  `frontend/src/generated/api` with a fresh client.
 
 Keep this file updated with any server changes.
