@@ -18,5 +18,6 @@ dotnet run
 - Run `bun run lint` to verify formatting with `dotnet format`.
 - Generate the OpenAPI spec with `bun run apigen`. This writes
   `api/api-spec.json` at the repository root.
+- Depends on `Olve.Results` 0.23.0 for result-based error handling.
 
 Keep this file updated with any server changes.

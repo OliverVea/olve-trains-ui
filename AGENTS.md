@@ -25,6 +25,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   Dev dependency `@microsoft/kiota` provides the CLI for generating
   TypeScript API clients from the OpenAPI spec.
 - `api/` – generated OpenAPI specification for the backend.
+- `docs/` – documentation such as dependency usage guides.
 - `README.md` – project overview and quickstart instructions.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
