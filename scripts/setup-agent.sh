@@ -1,17 +1,21 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ -n "${AGENT_SETUP:-}" ]]; then
-  echo "AGENT_SETUP is set. These scripts are only for setting up the agent." >&2
-  exit 1
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MARKER="$SCRIPT_DIR/.agent_setup_done"
+
+# 1. only ever run once
+if [[ -f "$MARKER" ]]; then
+  echo "Agent already set up; skipping."
+  exit 0
 fi
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# 2. source each child (so, e.g., PATH changes persist)
+#    child scripts themselves will guard against direct execution
+. "$SCRIPT_DIR/setup-bun.sh"
+. "$SCRIPT_DIR/setup-dotnet.sh"
+# . "$SCRIPT_DIR/install-act.sh"
 
-"$SCRIPT_DIR/setup-bun.sh"
-"$SCRIPT_DIR/setup-dotnet.sh"
-#"$SCRIPT_DIR/install-act.sh"
-
-export AGENT_SETUP=1
-
-echo "Agent setup complete. AGENT_SETUP variable set."
+# 3. mark the whole thing done
+touch "$MARKER"
+echo "✅ Agent setup complete."

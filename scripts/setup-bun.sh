@@ -1,28 +1,29 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [[ -n "${AGENT_SETUP:-}" ]]; then
-  echo "AGENT_SETUP is set. These scripts are only for setting up the agent." >&2
+# Guard: must be *sourced* from setup-agent.sh, not executed directly
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  echo "Error: please run setup-agent.sh (not setup-bun.sh) directly." >&2
   exit 1
 fi
 
-# -----------------------------------------------------------------------------
-# setup-bun.sh
-#
-# Installs Bun if it is not already available and installs repository
-# dependencies using `bun install`.
-# -----------------------------------------------------------------------------
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+STEP_MARKER="$SCRIPT_DIR/.bun_setup_done"
 
+# Idempotent: only run once
+if [[ -f "$STEP_MARKER" ]]; then
+  return 0
+fi
+
+# your existing bun-install logic
 if ! command -v bun >/dev/null 2>&1; then
-  echo "Bun not found. Installing..."
+  echo "Bun not found. Installing…"
   curl -fsSL https://bun.sh/install | bash
   export PATH="$HOME/.bun/bin:$PATH"
 fi
 
-# Run bun install from the repository root (directory of this script)
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$SCRIPT_DIR"
-
 bun install
-
 echo "✅ Bun setup complete."
+
+# record that we ran
+touch "$STEP_MARKER"
