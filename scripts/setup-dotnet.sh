@@ -9,7 +9,7 @@ fi
 # Path to your .csproj file (relative to repository root)
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-PROJECT_PATH="$REPO_ROOT/backend/backend.csproj"
+PROJECT_PATH="$REPO_ROOT/backend/Olve.Trains.UI.Server.csproj"
 
 # .NET SDK version to install
 SDK_VERSION="9.0"
