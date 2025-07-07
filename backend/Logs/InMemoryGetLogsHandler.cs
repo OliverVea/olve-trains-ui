@@ -10,7 +10,7 @@ public sealed class InMemoryGetLogsHandler : IGetLogsHandler
     {
         var logs = _logs.ToArray();
         var result = Result<IReadOnlyList<LogMessage>>.Success(logs);
-        
+
         return Task.FromResult(result);
     }
 
