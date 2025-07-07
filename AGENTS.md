@@ -14,12 +14,6 @@ using **bun**. Run backend commands from the `backend/` directory using the
   Backend tests live in `backend-tests/` and use
   [TUnit](https://tunit.dev/). Run them with `dotnet test` from the repository root.
   Usage details are in `docs/dependencies/TUnit.md`.
-- `scripts/` – helper scripts for preparing a development environment:
-  - `setup-bun.sh` installs Bun, runs `bun install`, and sets `BUN_SETUP`.
-  - `setup-dotnet.sh` installs the .NET SDK, restores packages, and sets `DOTNET_SETUP`.
-  - `install-act.sh` installs Docker (if missing) and the `act` CLI then sets `ACT_SETUP`.
-  - `setup-agent.sh` sources the above scripts and exports `AGENT_SETUP`.
-    When these variables are present the scripts exit immediately.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
 - Run `bun run apigen` to regenerate `api/api-spec.json` and the
   TypeScript client under `frontend/src/generated/api`.
@@ -48,3 +42,26 @@ using **bun**. Run backend commands from the `backend/` directory using the
   It lints frontend and configuration files via **biome** and verifies C#
   code with `dotnet format`.
 Always update this `AGENTS.md` with repository changes so LLM agents can operate correctly.
+## Tasks
+### Mapping `Result` types to HTTP responses
+
+Use `WithResultMapping()` on endpoints that return `Olve.Results` to convert
+them to HTTP results automatically:
+
+```csharp
+app.MapPost("/run-command", (
+    RunCommandRequest req,
+    IRunCommandHandler handler,
+    CancellationToken ct) =>
+        handler.RunAsync(req.Command, ct))
+   .WithResultMapping();
+```
+
+### Adding FE Test Fixtures
+
+1. Place JSON responses under `frontend/tests/fixtures/`.
+2. Map endpoints to fixtures in `frontend/tests/handlers.ts` using MSW.
+3. Write tests in `frontend/tests/*.test.ts` and import any utilities from `frontend/src/` as needed.
+
+A sample test is provided in `frontend/tests/app.test.ts`.
+Integration tests will be introduced alongside the backend as it evolves.
