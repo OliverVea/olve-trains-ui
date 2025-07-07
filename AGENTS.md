@@ -35,6 +35,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `backend/IPathJsonConverter.cs` – JSON converter for `IPath` using `Path.Create`.
 - `backend/RunCommand.cs` – defines `IRunCommandHandler` and a logging
   implementation used by the `/run-command` endpoint.
+- `backend/Logs.cs` – contains `LogMessage` and an in-memory
+  `IGetLogsHandler` used by the `/logs` endpoint.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
 ## Linting

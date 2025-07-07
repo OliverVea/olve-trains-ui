@@ -25,6 +25,15 @@ export function createExceptionFromDiscriminatorValue(parseNode: ParseNode | und
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {LogMessage}
+ */
+// @ts-ignore
+export function createLogMessageFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoLogMessage;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {ProblemOriginInformation}
  */
 // @ts-ignore
@@ -82,6 +91,21 @@ export function deserializeIntoException(exception: Partial<Exception> | undefin
 // @ts-ignore
 export function deserializeIntoException_data(exception_data: Partial<Exception_data> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoLogMessage(logMessage: Partial<LogMessage> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "level": n => { logMessage.level = n.getNumberValue(); },
+        "message": n => { logMessage.message = n.getStringValue(); },
+        "sourceLine": n => { logMessage.sourceLine = n.getNumberValue(); },
+        "sourcePath": n => { logMessage.sourcePath = n.getStringValue(); },
+        "tags": n => { logMessage.tags = n.getCollectionOfPrimitiveValues<string>(); },
+        "time": n => { logMessage.time = n.getDateValue(); },
     }
 }
 /**
@@ -176,6 +200,36 @@ export interface Exception_data extends AdditionalDataHolder, Parsable {
      */
     additionalData?: Record<string, unknown>;
 }
+export interface LogMessage extends AdditionalDataHolder, Parsable {
+    /**
+     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
+     */
+    additionalData?: Record<string, unknown>;
+    /**
+     * The level property
+     */
+    level?: number | null;
+    /**
+     * The message property
+     */
+    message?: string | null;
+    /**
+     * The sourceLine property
+     */
+    sourceLine?: number | null;
+    /**
+     * The sourcePath property
+     */
+    sourcePath?: string | null;
+    /**
+     * The tags property
+     */
+    tags?: string[] | null;
+    /**
+     * The time property
+     */
+    time?: Date | null;
+}
 export interface ProblemOriginInformation extends AdditionalDataHolder, Parsable {
     /**
      * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
@@ -264,6 +318,22 @@ export function serializeException(writer: SerializationWriter, exception: Parti
 export function serializeException_data(writer: SerializationWriter, exception_data: Partial<Exception_data> | undefined | null = {}) : void {
     if (exception_data) {
         writer.writeAdditionalData(exception_data.additionalData);
+    }
+}
+/**
+ * Serializes information the current object
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeLogMessage(writer: SerializationWriter, logMessage: Partial<LogMessage> | undefined | null = {}) : void {
+    if (logMessage) {
+        writer.writeNumberValue("level", logMessage.level);
+        writer.writeStringValue("message", logMessage.message);
+        writer.writeNumberValue("sourceLine", logMessage.sourceLine);
+        writer.writeStringValue("sourcePath", logMessage.sourcePath);
+        writer.writeCollectionOfPrimitiveValues<string>("tags", logMessage.tags);
+        writer.writeDateValue("time", logMessage.time);
+        writer.writeAdditionalData(logMessage.additionalData);
     }
 }
 /**
