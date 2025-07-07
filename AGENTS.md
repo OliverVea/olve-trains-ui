@@ -14,6 +14,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   Backend tests live in `backend-tests/` and use
   [TUnit](https://tunit.dev/). Run them with `dotnet test` from the repository root.
   Usage details are in `docs/dependencies/TUnit.md`.
+- `e2e-tests/` – Playwright end-to-end specs run with `bun run e2e`.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
 - Run `bun run apigen` to regenerate `api/api-spec.json` and the
   TypeScript client under `frontend/src/generated/api`.
@@ -36,8 +37,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `backend/ResultMappingExtensions.cs` – `WithResultMapping()` and
   `WithResultMapping<T>()` convert `Result` values to HTTP responses and
   document 200/400 responses.
-- `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
-  and `bun run test` on every push and pull request.
+- `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`,
+  `bun run test` and `bun run e2e` on every push and pull request.
 ## Linting
 - Run `bun run lint` to check formatting and style across the repo.
   It lints frontend and configuration files via **biome** and verifies C#
@@ -71,4 +72,4 @@ app.MapGet("/logs", (
 3. Write tests in `frontend/tests/*.test.ts` and import any utilities from `frontend/src/` as needed.
 
 A sample test is provided in `frontend/tests/app.test.ts`.
-Integration tests will be introduced alongside the backend as it evolves.
+Playwright E2E specs reside in `e2e-tests/`.

@@ -17,5 +17,7 @@ jobs:
         with:
           dotnet-version: '9.0.x'
       - run: bun install --frozen-lockfile
+      - run: bunx playwright install --with-deps
       - run: bun run lint
       - run: bun run test
+      - run: bun run e2e
