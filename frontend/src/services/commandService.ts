@@ -1,6 +1,5 @@
-import { sendCommand } from '../api/apiClient';
+import { getApiClient } from '../api/client.js';
 import type { ApiError } from '../api/error';
-import type { Success } from '../api/success';
 
 /** Outcome of attempting to run a server command. */
 export interface CommandResult {
@@ -11,9 +10,11 @@ export interface CommandResult {
 }
 
 export async function runCommand(command: string): Promise<CommandResult> {
-  const result = await sendCommand(command);
-  if ((result as Success).success) {
+  const client = getApiClient();
+  try {
+    await client.runCommand.post({ command });
     return { ok: true };
+  } catch (err) {
+    return { ok: false, errors: err as ApiError[] };
   }
-  return { ok: false, errors: result as ApiError[] };
 }

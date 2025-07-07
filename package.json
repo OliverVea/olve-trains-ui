@@ -12,6 +12,12 @@
   "devDependencies": {
     "@biomejs/biome": "^2.0.6",
     "@microsoft/kiota": "^1.27.0",
+    "@microsoft/kiota-abstractions": "^1.0.0-preview.96",
+    "@microsoft/kiota-http-fetchlibrary": "^1.0.0-preview.96",
+    "@microsoft/kiota-serialization-form": "^1.0.0-preview.96",
+    "@microsoft/kiota-serialization-json": "^1.0.0-preview.96",
+    "@microsoft/kiota-serialization-multipart": "^1.0.0-preview.96",
+    "@microsoft/kiota-serialization-text": "^1.0.0-preview.96",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
