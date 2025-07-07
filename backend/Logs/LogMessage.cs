@@ -1,5 +1,3 @@
-using Olve.Paths;
-
 namespace Olve.Trains.UI.Server.Logs;
 
 public sealed record LogMessage(

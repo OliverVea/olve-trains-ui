@@ -1,8 +1,6 @@
 using System.Reflection;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 
-namespace Olve.Trains.UI.Server;
+namespace Olve.Trains.UI.Server.Api;
 
 public static class ResultMappingExtensions
 {
@@ -10,13 +8,15 @@ public static class ResultMappingExtensions
     {
         builder.Produces(StatusCodes.Status200OK)
                .Produces<ResultProblem[]>(StatusCodes.Status400BadRequest);
+        
         return AddResultFilter(builder);
     }
 
     public static RouteHandlerBuilder WithResultMapping<T>(this RouteHandlerBuilder builder)
     {
-        builder.Produces<T>(StatusCodes.Status200OK)
+        builder.Produces<T>()
                .Produces<ResultProblem[]>(StatusCodes.Status400BadRequest);
+        
         return AddResultFilter(builder);
     }
 
@@ -25,15 +25,19 @@ public static class ResultMappingExtensions
         return builder.AddEndpointFilterFactory((context, next) =>
         {
             var returnType = context.MethodInfo.ReturnType;
-            bool isTask = typeof(Task).IsAssignableFrom(returnType);
+            var isTask = typeof(Task).IsAssignableFrom(returnType);
             if (isTask && returnType.IsGenericType)
+            {
                 returnType = returnType.GenericTypeArguments[0];
+            }
 
-            bool isResult = returnType == typeof(Result);
-            bool isGenericResult = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Result<>);
+            var isResult = returnType == typeof(Result);
+            var isGenericResult = returnType.IsGenericType && returnType.GetGenericTypeDefinition() == typeof(Result<>);
 
             if (!isResult && !isGenericResult)
+            {
                 return next;
+            }
 
             return async invocationContext =>
             {
@@ -42,26 +46,28 @@ public static class ResultMappingExtensions
                     return r.ToHttpResult();
 
                 var type = result!.GetType();
-                if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Result<>))
+                if (!type.IsGenericType || type.GetGenericTypeDefinition() != typeof(Result<>))
                 {
-                    var method = typeof(ResultMappingExtensions).GetMethod(nameof(MapGenericResult), BindingFlags.NonPublic | BindingFlags.Static)!
-                        .MakeGenericMethod(type.GenericTypeArguments[0]);
-                    return (IResult)method.Invoke(null, new[] { result })!;
+                    return result;
                 }
+                
+                var method = typeof(ResultMappingExtensions).GetMethod(nameof(MapGenericResult), BindingFlags.NonPublic | BindingFlags.Static)!
+                    .MakeGenericMethod(type.GenericTypeArguments[0]);
+                
+                return (IResult)method.Invoke(null, [result])!;
 
-                return result;
             };
         });
     }
 
-    public static IResult ToHttpResult(this Result result)
+    private static IResult ToHttpResult(this Result result)
     {
         return result.TryPickProblems(out var problems)
             ? TypedResults.BadRequest(problems.ToArray())
             : TypedResults.Ok();
     }
 
-    public static IResult ToHttpResult<T>(this Result<T> result)
+    private static IResult ToHttpResult<T>(this Result<T> result)
     {
         return result.TryPickProblems(out var problems, out var value)
             ? TypedResults.BadRequest(problems.ToArray())

@@ -1,3 +1,4 @@
+using Olve.Trains.UI.Server.Api;
 using Olve.Trains.UI.Server.Commands;
 using Olve.Trains.UI.Server.Logs;
 
@@ -10,7 +11,9 @@ public static class ApplicationConfiguration
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddOpenApi();
         builder.Services.ConfigureHttpJsonOptions(options =>
-            options.SerializerOptions.Converters.Add(new PathJsonConverter()));
+        {
+            options.SerializerOptions.Converters.Add(new PathJsonConverter());
+        });
         
         // Allow all cors
         builder.Services.AddCors(options =>
@@ -32,8 +35,6 @@ public static class ApplicationConfiguration
     public static WebApplication ConfigureApplication(this WebApplication app)
     {
         app.UseCors();
-        
-        app.MapGet("/", () => HttpResults.Redirect("localhost:5173"));
 
         app.MapPost("/run-command", (
                     RunCommandRequest request,

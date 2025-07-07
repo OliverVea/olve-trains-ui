@@ -1,5 +1,3 @@
-using Olve.Results;
-
 namespace Olve.Trains.UI.Server.Logs;
 
 public interface IGetLogsHandler

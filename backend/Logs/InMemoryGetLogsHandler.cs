@@ -1,10 +1,8 @@
-using Olve.Results;
-
 namespace Olve.Trains.UI.Server.Logs;
 
 public sealed class InMemoryGetLogsHandler : IGetLogsHandler
 {
-    private readonly List<LogMessage> _logs = new();
+    private readonly List<LogMessage> _logs = [];
 
     public Task<Result<IReadOnlyList<LogMessage>>> GetAsync(CancellationToken cancellationToken)
     {
