@@ -27,6 +27,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
   `kiota generate --language TypeScript -d api/api-spec.json -o
   frontend/src/generated/api --class-name ApiClient --namespace-name
   Olve.Trains.ApiClient` behind the scenes.
+- If the Kiota CLI fails to download (offline), run the `dotnet build` portion
+  and manually update `api/api-spec.json` so `IPath` has `{ "type": "string" }`.
 - `api/` – generated OpenAPI specification for the backend.
 - `README.md` – project overview and quickstart instructions.
 - `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md`.
