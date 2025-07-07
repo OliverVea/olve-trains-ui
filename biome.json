@@ -11,9 +11,9 @@
       "**",
       "!node_modules/**",
       "!frontend/public/dist/**",
+      "!frontend/src/generated/**",
       "!backend/bin/**",
-      "!backend/obj/**",
-      "!generated/**"
+      "!backend/obj/**"
     ]
   }
 }

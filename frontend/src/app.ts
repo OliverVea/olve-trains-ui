@@ -1,7 +1,7 @@
 const LOG_PARENT_ID = 'log-parent';
 
-import { LogMessage, LogLevel } from './api/logMessage.js';
-import { ApiError } from './api/error.js';
+import { type LogMessage, LogLevel } from './api/logMessage.js';
+import type { ApiError } from './api/error.js';
 import { fetchLogs } from './services/logService.js';
 import { runCommand as executeCommand } from './services/commandService.js';
 
