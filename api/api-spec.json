@@ -42,17 +42,11 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ResultProblem"
-                  }
+                  "$ref": "#/components/schemas/Result"
                 }
               }
             }
@@ -72,23 +66,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/LogMessage"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ResultProblem"
-                  }
+                  "$ref": "#/components/schemas/ResultOfIReadOnlyListOfLogMessage"
                 }
               }
             }
@@ -195,6 +173,49 @@
           },
           "linkString": {
             "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "succeeded": {
+            "type": "boolean"
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "problems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResultProblem"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "ResultOfIReadOnlyListOfLogMessage": {
+        "type": "object",
+        "properties": {
+          "succeeded": {
+            "type": "boolean"
+          },
+          "failed": {
+            "type": "boolean"
+          },
+          "problems": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResultProblem"
+            },
+            "nullable": true
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogMessage"
+            },
             "nullable": true
           }
         }

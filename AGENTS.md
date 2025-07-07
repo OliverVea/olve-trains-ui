@@ -39,6 +39,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
   implementation used by the `/run-command` endpoint.
 - `backend/Logs.cs` – contains `LogMessage` and an in-memory
   `IGetLogsHandler` used by the `/logs` endpoint.
+- `backend/ResultMappingExtensions.cs` – adds `WithResultMapping()` to map
+  `Result` values to HTTP responses.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
 ## Linting
