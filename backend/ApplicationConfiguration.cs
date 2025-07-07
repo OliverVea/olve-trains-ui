@@ -31,7 +31,9 @@ public static class ApplicationConfiguration
 
     public static WebApplication ConfigureApplication(this WebApplication app)
     {
-        app.MapGet("/", () => "Olve.Trains.UI.Server");
+        app.UseCors();
+        
+        app.MapGet("/", () => HttpResults.Redirect("localhost:5173"));
 
         app.MapPost("/run-command", (
                     RunCommandRequest request,
