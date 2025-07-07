@@ -2,8 +2,9 @@
 import { onMount } from 'svelte';
 import { LogLevel } from './api/logMessage';
 import type { LogMessage } from './api/logMessage';
+import { fetchLogs } from './services/logService.js';
+import { runCommand as executeCommand } from './services/commandService.js';
 
-const API_BASE = 'http://localhost:5000';
 export let initialLogs: LogMessage[] = [];
 let logs: LogMessage[] = initialLogs;
 let command = '';
@@ -14,36 +15,30 @@ function formatLog(log: LogMessage): string {
   return `[${timestamp}] [${LogLevel[log.level]}]: ${log.message}`;
 }
 
-async function fetchLogs(): Promise<void> {
-  const resp = await fetch(`${API_BASE}/logs`);
-  if (!resp.ok) throw new Error(`Fetch logs failed: ${resp.status}`);
-  const data: any[] = await resp.json();
-  logs = data.map((item) => ({
-    level: item.level as LogLevel,
-    message: item.message as string,
-    sourcePath: item.sourcePath ?? null,
-    sourceLine: item.sourceLine ?? null,
-    time: item.time as string,
-    tags: item.tags ?? null,
-  }));
+async function loadLogs(): Promise<void> {
+  const result = await fetchLogs();
+  if (Array.isArray(result) && 'severity' in result[0]) {
+    throw new Error(result[0].message);
+  }
+  logs = result as LogMessage[];
 }
-export { fetchLogs };
+export { loadLogs as fetchLogs };
 
 async function runCommand(): Promise<void> {
   const cmd = command.trim();
   if (!cmd) return;
   commandResponse = 'Running…';
-  const resp = await fetch(`${API_BASE}/command/${encodeURIComponent(cmd)}`);
-  commandResponse = resp.ok
+  const result = await executeCommand(cmd);
+  commandResponse = result.ok
     ? `✅ Command "${cmd}" succeeded`
-    : `❌ Command "${cmd}" failed (${resp.status})`;
-  if (resp.ok) {
+    : `❌ Command "${cmd}" failed: ${result.errors?.map(e => e.message).join('; ')}`;
+  if (result.ok) {
     command = '';
-    await fetchLogs();
+    await loadLogs();
   }
 }
 
-onMount(fetchLogs);
+onMount(loadLogs);
 </script>
 
 <header>
