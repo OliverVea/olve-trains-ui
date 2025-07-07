@@ -17,6 +17,8 @@ dotnet run
 - `POST /run-command` accepts `{ command: string }` and runs it using
   `IRunCommandHandler`. The default `LoggingRunCommandHandler` just logs
   the command.
+- `GET /logs` returns an array of `LogMessage` instances via
+  `IGetLogsHandler` which stores messages in memory.
 - `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.

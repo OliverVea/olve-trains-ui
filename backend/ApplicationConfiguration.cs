@@ -10,6 +10,7 @@ public static class ApplicationConfiguration
         builder.Services.AddOpenApi();
         builder.Services.ConfigureHttpJsonOptions(options =>
             options.SerializerOptions.Converters.Add(new PathJsonConverter()));
+        builder.Services.AddSingleton<IGetLogsHandler, InMemoryGetLogsHandler>();
         builder.Services.AddSingleton<IRunCommandHandler, LoggingRunCommandHandler>();
 
         return builder;
@@ -31,6 +32,12 @@ public static class ApplicationConfiguration
             return TypedResults.Ok(new SuccessResponse());
         })
         .WithName("RunCommand")
+        .WithOpenApi();
+
+        app.MapGet("/logs", (
+            IGetLogsHandler handler,
+            CancellationToken ct) => handler.GetAsync(ct))
+        .WithName("GetLogs")
         .WithOpenApi();
 
         return app;

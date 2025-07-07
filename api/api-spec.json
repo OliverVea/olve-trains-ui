@@ -66,6 +66,29 @@
           }
         }
       }
+    },
+    "/logs": {
+      "get": {
+        "tags": [
+          "Olve.Trains.UI.Server"
+        ],
+        "operationId": "GetLogs",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LogMessage"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -108,6 +131,47 @@
       },
       "IPath": {
         "type": "string"
+      },
+      "LogLevel": {
+        "type": "integer"
+      },
+      "LogMessage": {
+        "required": [
+          "level",
+          "message",
+          "sourcePath",
+          "sourceLine",
+          "time",
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "level": {
+            "$ref": "#/components/schemas/LogLevel"
+          },
+          "message": {
+            "type": "string"
+          },
+          "sourcePath": {
+            "$ref": "#/components/schemas/IPath"
+          },
+          "sourceLine": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
       },
       "MethodBase": {
         "nullable": true
