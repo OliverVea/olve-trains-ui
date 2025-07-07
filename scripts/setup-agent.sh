@@ -2,12 +2,11 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-MARKER="$SCRIPT_DIR/.agent_setup_done"
 
-# 1. only ever run once
-if [[ -f "$MARKER" ]]; then
+# 1. only ever run once via environment variable
+if [[ -n "${AGENT_SETUP:-}" ]]; then
   echo "Agent already set up; skipping."
-  exit 0
+  [[ "${BASH_SOURCE[0]}" != "${0}" ]] && return 0 || exit 0
 fi
 
 # 2. source each child (so, e.g., PATH changes persist)
@@ -17,5 +16,5 @@ fi
 # . "$SCRIPT_DIR/install-act.sh"
 
 # 3. mark the whole thing done
-touch "$MARKER"
+export AGENT_SETUP=1
 echo "✅ Agent setup complete."

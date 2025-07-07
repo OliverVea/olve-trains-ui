@@ -8,10 +8,9 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-STEP_MARKER="$SCRIPT_DIR/.bun_setup_done"
 
-# Idempotent: only run once
-if [[ -f "$STEP_MARKER" ]]; then
+# Idempotent: skip if BUN_SETUP is already set
+if [[ -n "${BUN_SETUP:-}" ]]; then
   return 0
 fi
 
@@ -24,6 +23,4 @@ fi
 
 bun install
 echo "✅ Bun setup complete."
-
-# record that we ran
-touch "$STEP_MARKER"
+export BUN_SETUP=1
