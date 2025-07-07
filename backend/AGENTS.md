@@ -29,7 +29,7 @@ dotnet run
 - Generate the OpenAPI spec and TypeScript client with `bun run apigen`.
   This writes `api/api-spec.json` and updates
   `frontend/src/generated/api`.
-- `IPathJsonConverter` serializes `IPath` values by calling
+- `PathJsonConverter` serializes `IPath` values by calling
   `value.Path` and deserializes with `Path.Create(string)`.
 
 ## Testing
