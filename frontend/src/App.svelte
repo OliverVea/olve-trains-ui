@@ -5,7 +5,8 @@ import type { LogMessage } from './api/logMessage';
 import { fetchLogs } from './services/logService.js';
 import { runCommand as executeCommand } from './services/commandService.js';
 
-export const initialLogs: LogMessage[] = [];
+/** Optional starting logs for easier testing */
+export let initialLogs: LogMessage[] = [];
 let logs: LogMessage[] = initialLogs;
 let command = '';
 let commandResponse = '';
