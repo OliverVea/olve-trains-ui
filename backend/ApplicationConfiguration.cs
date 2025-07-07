@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Olve.Trains.UI.Server.Commands;
 using Olve.Trains.UI.Server.Logs;
 
@@ -35,20 +34,20 @@ public static class ApplicationConfiguration
         app.MapGet("/", () => "Olve.Trains.UI.Server");
 
         app.MapPost("/run-command", (
-            RunCommandRequest request,
-            IRunCommandHandler handler,
-            CancellationToken ct) =>
+                    RunCommandRequest request,
+                    IRunCommandHandler handler,
+                    CancellationToken ct) =>
                 handler.RunAsync(request.Command, ct))
-        .WithResultMapping()
-        .WithName("RunCommand")
-        .WithOpenApi();
+            .WithResultMapping()
+            .WithName("RunCommand")
+            .WithOpenApi();
 
         app.MapGet("/logs", (
-            IGetLogsHandler handler,
-            CancellationToken ct) => handler.GetAsync(ct))
-        .WithResultMapping()
-        .WithName("GetLogs")
-        .WithOpenApi();
+                IGetLogsHandler handler,
+                CancellationToken ct) => handler.GetAsync(ct))
+            .WithResultMapping()
+            .WithName("GetLogs")
+            .WithOpenApi();
 
         return app;
     }
