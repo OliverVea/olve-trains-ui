@@ -6,6 +6,12 @@ if [[ -n "${AGENT_SETUP:-}" ]]; then
   exit 1
 fi
 
+# Skip if act was previously installed via this script
+if [[ -n "${ACT_SETUP:-}" ]]; then
+  echo "act already installed; skipping." >&2
+  exit 0
+fi
+
 # -----------------------------------------------------------------------------
 # install-act.sh
 #
@@ -83,3 +89,4 @@ echo "Next steps:"
 echo " 1. cd into your repo containing .github/workflows/"
 echo " 2. Run 'act [event]' (e.g. 'act push') to execute your workflows locally."
 echo " 3. Add '-P ubuntu-latest=nektos/act-environments-ubuntu:18.04' if you need the official image."
+export ACT_SETUP=1

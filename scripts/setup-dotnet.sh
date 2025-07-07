@@ -8,10 +8,9 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 fi
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-STEP_MARKER="$SCRIPT_DIR/.dotnet_setup_done"
 
-# only once
-if [[ -f "$STEP_MARKER" ]]; then
+# only once via environment variable
+if [[ -n "${DOTNET_SETUP:-}" ]]; then
   return 0
 fi
 
@@ -37,4 +36,4 @@ dotnet test    "$PROJECT_PATH" --no-build   --verbosity minimal
 dotnet tool install --global Microsoft.OpenApi.Kiota
 
 echo "✅ .NET setup complete."
-touch "$STEP_MARKER"
+export DOTNET_SETUP=1

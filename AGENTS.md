@@ -12,12 +12,11 @@ using **bun**. Run backend commands from the `backend/` directory using the
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
 - `scripts/` – helper scripts for preparing a development environment:
-  - `setup-bun.sh` installs Bun and runs `bun install`.
-  - `setup-dotnet.sh` installs the .NET SDK and pre-restores backend packages.
-  - `install-act.sh` installs Docker (if missing) and the `act` CLI for running
-    GitHub Actions locally.
-  - `setup-agent.sh` runs the above scripts and then sets the `AGENT_SETUP`
-    environment variable.
+  - `setup-bun.sh` installs Bun, runs `bun install`, and sets `BUN_SETUP`.
+  - `setup-dotnet.sh` installs the .NET SDK, restores packages, and sets `DOTNET_SETUP`.
+  - `install-act.sh` installs Docker (if missing) and the `act` CLI then sets `ACT_SETUP`.
+  - `setup-agent.sh` sources the above scripts and exports `AGENT_SETUP`.
+    When these variables are present the scripts exit immediately.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
 - Run `bun run apigen` to regenerate `api/api-spec.json` and the
   TypeScript client under `frontend/src/generated/api`.
