@@ -48,5 +48,6 @@ All build scripts assume you run them from the repository root using **bun**.
 - Fixtures reside in `tests/fixtures/` and are loaded by MSW.
 - Run tests with `bun run test`. No backend services are required.
 - Sample tests can be found under `tests/` and use Testing Library helpers.
+ - End-to-end specs live in `e2e-tests/` at the repo root and run with `bun run e2e`.
 
 Always update this `AGENTS.md` when the front-end structure or tooling changes.

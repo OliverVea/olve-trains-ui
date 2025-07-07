@@ -35,5 +35,6 @@ dotnet run
 ## Testing
 Backend tests live in `../backend-tests/` and use the TUnit framework.
 Run `dotnet test` in `../backend-tests` to execute them.
+Playwright E2E tests live in `../e2e-tests/` and run with `bun run e2e` from the repo root.
 
 Keep this file updated with any server changes.

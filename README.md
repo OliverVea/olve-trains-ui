@@ -41,6 +41,16 @@ No backend is required. Run the suite with:
 bun run test
 ```
 
+## End-to-End Tests
+
+Playwright drives both the Svelte dev server and the backend to exercise the full stack.
+Start the servers manually with `scripts/start-e2e.sh` or let Playwright handle it automatically.
+Run the suite with:
+
+```bash
+bun run e2e
+```
+
 ## Running GitHub Actions locally
 
 To test workflows defined under `.github/workflows/` without pushing code, use
