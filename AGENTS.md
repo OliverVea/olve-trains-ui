@@ -14,12 +14,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   Backend tests live in `backend-tests/` and use
   [TUnit](https://tunit.dev/). Run them with `dotnet test` from the repository root.
   Usage details are in `docs/dependencies/TUnit.md`.
-- `scripts/` – helper scripts for preparing a development environment:
-  - `setup-bun.sh` installs Bun, runs `bun install`, and sets `BUN_SETUP`.
-  - `setup-dotnet.sh` installs the .NET SDK, restores packages, and sets `DOTNET_SETUP`.
-  - `install-act.sh` installs Docker (if missing) and the `act` CLI then sets `ACT_SETUP`.
-  - `setup-agent.sh` sources the above scripts and exports `AGENT_SETUP`.
-    When these variables are present the scripts exit immediately.
+- Install Bun and the .NET SDK manually; helper scripts were removed.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
 - Run `bun run apigen` to regenerate `api/api-spec.json` and the
   TypeScript client under `frontend/src/generated/api`.

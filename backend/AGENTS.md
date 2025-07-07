@@ -3,9 +3,7 @@
 This directory hosts the ASP.NET Core Minimal API.
 
 - Built with .NET 9 using `Microsoft.NET.Sdk.Web`.
-- `../scripts/setup-dotnet.sh` installs the required .NET SDK and pre-restores
-  packages for offline development. Run it once with network access from the
-  repository root.
+- Install the .NET SDK manually; helper scripts were removed.
 - To run locally:
 
 ```bash
