@@ -28,7 +28,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `api/` – generated OpenAPI specification for the backend.
 - `README.md` – project overview and quickstart instructions.
 - `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md` and `TUnit.md`.
-- `backend/IPathJsonConverter.cs` – JSON converter for `IPath` using `Path.Create`.
+- `backend/Api/PathJsonConverter.cs` – JSON converter for `IPath` using `Path.Create`.
 - `backend/RunCommand.cs` – defines `IRunCommandHandler` and a logging
   implementation used by the `/run-command` endpoint.
 - `backend/Logs.cs` – contains `LogMessage` and an in-memory

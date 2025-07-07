@@ -5,25 +5,6 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/": {
-      "get": {
-        "tags": [
-          "Olve.Trains.UI.Server"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/run-command": {
       "post": {
         "tags": [
@@ -136,9 +117,7 @@
         "nullable": true
       },
       "IPath": {
-        "type": "string"
-      },
-      "IPath2": {
+        "type": "string",
         "nullable": true
       },
       "LogLevel": {
@@ -162,7 +141,7 @@
             "type": "string"
           },
           "sourcePath": {
-            "$ref": "#/components/schemas/IPath2"
+            "$ref": "#/components/schemas/IPath"
           },
           "sourceLine": {
             "type": "integer",

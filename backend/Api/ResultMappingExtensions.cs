@@ -60,14 +60,14 @@ public static class ResultMappingExtensions
         });
     }
 
-    private static IResult ToHttpResult(this Result result)
+    public static IResult ToHttpResult(this Result result)
     {
         return result.TryPickProblems(out var problems)
             ? TypedResults.BadRequest(problems.ToArray())
             : TypedResults.Ok();
     }
 
-    private static IResult ToHttpResult<T>(this Result<T> result)
+    public static IResult ToHttpResult<T>(this Result<T> result)
     {
         return result.TryPickProblems(out var problems, out var value)
             ? TypedResults.BadRequest(problems.ToArray())
