@@ -20,6 +20,7 @@ dotnet run
 - `GET /logs` returns an array of `LogMessage` instances via
   `IGetLogsHandler` which stores messages in memory.
 - `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
+- See `../docs/dependencies/TUnit.md` for test framework usage.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.
 - Generate the OpenAPI spec and TypeScript client with `bun run apigen`.
@@ -27,5 +28,9 @@ dotnet run
   `frontend/src/generated/api`.
 - `IPathJsonConverter` serializes `IPath` values by calling
   `value.Path` and deserializes with `Path.Create(string)`.
+
+## Testing
+Backend tests live in `../backend-tests/` and use the TUnit framework.
+Run `dotnet test` in `../backend-tests` to execute them.
 
 Keep this file updated with any server changes.
