@@ -8,11 +8,12 @@
   },
   "files": {
     "includes": [
-      "**",                       
-      "!node_modules/**",         
-      "!frontend/public/dist/**", 
-      "!backend/bin/**",          
-      "!backend/obj/**"           
+      "**",
+      "!node_modules/**",
+      "!frontend/public/dist/**",
+      "!backend/bin/**",
+      "!backend/obj/**",
+      "!generated/**"
     ]
   }
 }

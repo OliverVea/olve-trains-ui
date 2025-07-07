@@ -12,6 +12,18 @@ public static class ApplicationConfiguration
         builder.Services.AddOpenApi();
         builder.Services.ConfigureHttpJsonOptions(options =>
             options.SerializerOptions.Converters.Add(new PathJsonConverter()));
+        
+        // Allow all cors
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy.AllowAnyOrigin()
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
+        });
+        
         builder.Services.AddSingleton<IGetLogsHandler, InMemoryGetLogsHandler>();
         builder.Services.AddSingleton<IRunCommandHandler, LoggingRunCommandHandler>();
 
