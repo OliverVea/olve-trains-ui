@@ -11,6 +11,9 @@ using **bun**. Run backend commands from the `backend/` directory using the
 - `frontend/` – current Svelte + TypeScript UI. See `frontend/AGENTS.md` for all
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
+  Backend tests live in `backend-tests/` and use
+  [TUnit](https://tunit.dev/). Run them with `dotnet test` from the repository root.
+  Usage details are in `docs/dependencies/TUnit.md`.
 - `scripts/` – helper scripts for preparing a development environment:
   - `setup-bun.sh` installs Bun, runs `bun install`, and sets `BUN_SETUP`.
   - `setup-dotnet.sh` installs the .NET SDK, restores packages, and sets `DOTNET_SETUP`.
@@ -30,7 +33,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   and manually update `api/api-spec.json` so `IPath` has `{ "type": "string" }`.
 - `api/` – generated OpenAPI specification for the backend.
 - `README.md` – project overview and quickstart instructions.
-- `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md`.
+- `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md` and `TUnit.md`.
 - `backend/IPathJsonConverter.cs` – JSON converter for `IPath` using `Path.Create`.
 - `backend/RunCommand.cs` – defines `IRunCommandHandler` and a logging
   implementation used by the `/run-command` endpoint.
