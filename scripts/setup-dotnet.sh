@@ -34,5 +34,7 @@ dotnet restore "$PROJECT_PATH" --verbosity quiet
 dotnet build   "$PROJECT_PATH" --no-restore --verbosity minimal
 dotnet test    "$PROJECT_PATH" --no-build   --verbosity minimal
 
+dotnet tool install --global Microsoft.OpenApi.Kiota
+
 echo "✅ .NET setup complete."
 touch "$STEP_MARKER"
