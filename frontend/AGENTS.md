@@ -17,6 +17,8 @@ All build scripts assume you run them from the repository root using **bun**.
   API client when needed.
 - `src/generated/api/` – Kiota generated TypeScript client from the backend
   spec. Run `bun run apigen` at the repository root to update these files.
+  The `ApiClient` exposes `runCommand.post()` to call the `/run-command`
+  endpoint.
 
 ## Coding style
 - Prefer modern ES6 syntax.
