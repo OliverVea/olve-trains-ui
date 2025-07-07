@@ -33,8 +33,9 @@ using **bun**. Run backend commands from the `backend/` directory using the
   implementation used by the `/run-command` endpoint.
 - `backend/Logs.cs` – contains `LogMessage` and an in-memory
   `IGetLogsHandler` used by the `/logs` endpoint.
-- `backend/ResultMappingExtensions.cs` – adds `WithResultMapping()` to map
-  `Result` values to HTTP responses.
+- `backend/ResultMappingExtensions.cs` – `WithResultMapping()` and
+  `WithResultMapping<T>()` convert `Result` values to HTTP responses and
+  document 200/400 responses.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`
   and `bun run test` on every push and pull request.
 ## Linting
@@ -45,8 +46,9 @@ Always update this `AGENTS.md` with repository changes so LLM agents can operate
 ## Tasks
 ### Mapping `Result` types to HTTP responses
 
-Use `WithResultMapping()` on endpoints that return `Olve.Results` to convert
-them to HTTP results automatically:
+Use `WithResultMapping()` or the generic `WithResultMapping<T>()` on endpoints
+that return `Olve.Results` to convert them to HTTP results automatically and
+add `200`/`400` documentation:
 
 ```csharp
 app.MapPost("/run-command", (
@@ -55,6 +57,11 @@ app.MapPost("/run-command", (
     CancellationToken ct) =>
         handler.RunAsync(req.Command, ct))
    .WithResultMapping();
+
+app.MapGet("/logs", (
+    IGetLogsHandler handler,
+    CancellationToken ct) => handler.GetAsync(ct))
+   .WithResultMapping<IReadOnlyList<LogMessage>>();
 ```
 
 ### Adding FE Test Fixtures

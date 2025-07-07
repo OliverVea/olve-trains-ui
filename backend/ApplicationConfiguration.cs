@@ -47,7 +47,7 @@ public static class ApplicationConfiguration
         app.MapGet("/logs", (
                 IGetLogsHandler handler,
                 CancellationToken ct) => handler.GetAsync(ct))
-            .WithResultMapping()
+            .WithResultMapping<IReadOnlyList<LogMessage>>()
             .WithName("GetLogs")
             .WithOpenApi();
 

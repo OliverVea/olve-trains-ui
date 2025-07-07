@@ -1,11 +1,26 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Olve.Trains.UI.Server;
 
 public static class ResultMappingExtensions
 {
     public static RouteHandlerBuilder WithResultMapping(this RouteHandlerBuilder builder)
+    {
+        builder.Produces(StatusCodes.Status200OK)
+               .Produces<ResultProblem[]>(StatusCodes.Status400BadRequest);
+        return AddResultFilter(builder);
+    }
+
+    public static RouteHandlerBuilder WithResultMapping<T>(this RouteHandlerBuilder builder)
+    {
+        builder.Produces<T>(StatusCodes.Status200OK)
+               .Produces<ResultProblem[]>(StatusCodes.Status400BadRequest);
+        return AddResultFilter(builder);
+    }
+
+    private static RouteHandlerBuilder AddResultFilter(RouteHandlerBuilder builder)
     {
         return builder.AddEndpointFilterFactory((context, next) =>
         {
