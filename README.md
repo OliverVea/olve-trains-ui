@@ -33,6 +33,20 @@ cd backend
 dotnet run
 ```
 
+### Mapping `Result` types to HTTP responses
+
+Use `WithResultMapping()` on endpoints that return `Olve.Results` to convert
+them to HTTP results automatically:
+
+```csharp
+app.MapPost("/run-command", (
+    RunCommandRequest req,
+    IRunCommandHandler handler,
+    CancellationToken ct) =>
+        handler.RunAsync(req.Command, ct))
+   .WithResultMapping();
+```
+
 ## Running Tests
 
 Front-end unit tests run with [Vitest](https://vitest.dev/) using JSDOM and Mock Service Worker.

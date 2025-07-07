@@ -34,28 +34,19 @@ public static class ApplicationConfiguration
     {
         app.MapGet("/", () => "Olve.Trains.UI.Server");
 
-        app.MapPost("/run-command", async Task<Results<Ok, BadRequest<ResultProblem[]>>> (
+        app.MapPost("/run-command", (
             RunCommandRequest request,
             IRunCommandHandler handler,
             CancellationToken ct) =>
-        {
-            var result = await handler.RunAsync(request.Command, ct);
-            return result.TryPickProblems(out var problems)
-                ? TypedResults.BadRequest(problems.ToArray())
-                : TypedResults.Ok();
-        })
+                handler.RunAsync(request.Command, ct))
+        .WithResultMapping()
         .WithName("RunCommand")
         .WithOpenApi();
 
-        app.MapGet("/logs", async Task<Results<Ok<IReadOnlyList<LogMessage>>, BadRequest<ResultProblem[]>>> (
+        app.MapGet("/logs", (
             IGetLogsHandler handler,
-            CancellationToken ct) =>
-            {
-                var result = await handler.GetAsync(ct);
-                return result.TryPickProblems(out var problems, out var logs)
-                    ? TypedResults.BadRequest(problems.ToArray())
-                    : TypedResults.Ok(logs);
-            })
+            CancellationToken ct) => handler.GetAsync(ct))
+        .WithResultMapping()
         .WithName("GetLogs")
         .WithOpenApi();
 

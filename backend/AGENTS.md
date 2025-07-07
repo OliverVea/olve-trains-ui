@@ -20,6 +20,8 @@ dotnet run
 - `GET /logs` returns an array of `LogMessage` instances via
   `IGetLogsHandler` which stores messages in memory.
 - `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
+- `WithResultMapping()` converts `Result` and `Result<T>` return values to
+  `TypedResults` automatically.
 - See `../docs/dependencies/TUnit.md` for test framework usage.
 - All C# files use `nullable` reference types and implicit usings.
 - Run `bun run lint` to verify formatting with `dotnet format`.
