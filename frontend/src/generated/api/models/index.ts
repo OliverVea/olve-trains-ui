@@ -59,15 +59,6 @@ export function createRunCommandRequestFromDiscriminatorValue(parseNode: ParseNo
     return deserializeIntoRunCommandRequest;
 }
 /**
- * Creates a new instance of the appropriate class based on discriminator value
- * @param parseNode The parse node to use to read the discriminator value and create the object
- * @returns {SuccessResponse}
- */
-// @ts-ignore
-export function createSuccessResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
-    return deserializeIntoSuccessResponse;
-}
-/**
  * The deserialization information for the current model
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -103,7 +94,7 @@ export function deserializeIntoLogMessage(logMessage: Partial<LogMessage> | unde
         "level": n => { logMessage.level = n.getNumberValue(); },
         "message": n => { logMessage.message = n.getStringValue(); },
         "sourceLine": n => { logMessage.sourceLine = n.getNumberValue(); },
-        "sourcePath": n => { logMessage.sourcePath = n.getStringValue(); },
+        "sourcePath": n => { logMessage.sourcePath = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "tags": n => { logMessage.tags = n.getCollectionOfPrimitiveValues<string>(); },
         "time": n => { logMessage.time = n.getDateValue(); },
     }
@@ -115,7 +106,7 @@ export function deserializeIntoLogMessage(logMessage: Partial<LogMessage> | unde
 // @ts-ignore
 export function deserializeIntoProblemOriginInformation(problemOriginInformation: Partial<ProblemOriginInformation> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
-        "filePath": n => { problemOriginInformation.filePath = n.getStringValue(); },
+        "filePath": n => { problemOriginInformation.filePath = n.getObjectValue<UntypedNode>(createUntypedNodeFromDiscriminatorValue); },
         "lineNumber": n => { problemOriginInformation.lineNumber = n.getNumberValue(); },
         "linkString": n => { problemOriginInformation.linkString = n.getStringValue(); },
     }
@@ -144,16 +135,6 @@ export function deserializeIntoResultProblem(resultProblem: Partial<ResultProble
 export function deserializeIntoRunCommandRequest(runCommandRequest: Partial<RunCommandRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
         "command": n => { runCommandRequest.command = n.getStringValue(); },
-    }
-}
-/**
- * The deserialization information for the current model
- * @returns {Record<string, (node: ParseNode) => void>}
- */
-// @ts-ignore
-export function deserializeIntoSuccessResponse(successResponse: Partial<SuccessResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
-    return {
-        "success": n => { successResponse.success = n.getBooleanValue(); },
     }
 }
 export interface Exception extends AdditionalDataHolder, Parsable {
@@ -220,7 +201,7 @@ export interface LogMessage extends AdditionalDataHolder, Parsable {
     /**
      * The sourcePath property
      */
-    sourcePath?: string | null;
+    sourcePath?: UntypedNode | null;
     /**
      * The tags property
      */
@@ -238,7 +219,7 @@ export interface ProblemOriginInformation extends AdditionalDataHolder, Parsable
     /**
      * The filePath property
      */
-    filePath?: string | null;
+    filePath?: UntypedNode | null;
     /**
      * The lineNumber property
      */
@@ -330,7 +311,7 @@ export function serializeLogMessage(writer: SerializationWriter, logMessage: Par
         writer.writeNumberValue("level", logMessage.level);
         writer.writeStringValue("message", logMessage.message);
         writer.writeNumberValue("sourceLine", logMessage.sourceLine);
-        writer.writeStringValue("sourcePath", logMessage.sourcePath);
+        writer.writeObjectValue("sourcePath", logMessage.sourcePath);
         writer.writeCollectionOfPrimitiveValues<string>("tags", logMessage.tags);
         writer.writeDateValue("time", logMessage.time);
         writer.writeAdditionalData(logMessage.additionalData);
@@ -343,7 +324,7 @@ export function serializeLogMessage(writer: SerializationWriter, logMessage: Par
 // @ts-ignore
 export function serializeProblemOriginInformation(writer: SerializationWriter, problemOriginInformation: Partial<ProblemOriginInformation> | undefined | null = {}) : void {
     if (problemOriginInformation) {
-        writer.writeStringValue("filePath", problemOriginInformation.filePath);
+        writer.writeObjectValue("filePath", problemOriginInformation.filePath);
         writer.writeNumberValue("lineNumber", problemOriginInformation.lineNumber);
         writer.writeStringValue("linkString", problemOriginInformation.linkString);
         writer.writeAdditionalData(problemOriginInformation.additionalData);
@@ -376,27 +357,6 @@ export function serializeRunCommandRequest(writer: SerializationWriter, runComma
         writer.writeStringValue("command", runCommandRequest.command);
         writer.writeAdditionalData(runCommandRequest.additionalData);
     }
-}
-/**
- * Serializes information the current object
- * @param writer Serialization writer to use to serialize this model
- */
-// @ts-ignore
-export function serializeSuccessResponse(writer: SerializationWriter, successResponse: Partial<SuccessResponse> | undefined | null = {}) : void {
-    if (successResponse) {
-        writer.writeBooleanValue("success", successResponse.success);
-        writer.writeAdditionalData(successResponse.additionalData);
-    }
-}
-export interface SuccessResponse extends AdditionalDataHolder, Parsable {
-    /**
-     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-     */
-    additionalData?: Record<string, unknown>;
-    /**
-     * The success property
-     */
-    success?: boolean | null;
 }
 /* tslint:enable */
 /* eslint-enable */

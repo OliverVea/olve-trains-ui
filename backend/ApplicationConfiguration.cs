@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Http.HttpResults;
-using Olve.Results;
+using Olve.Trains.UI.Server.Commands;
+using Olve.Trains.UI.Server.Logs;
+
 namespace Olve.Trains.UI.Server;
 
 public static class ApplicationConfiguration
@@ -20,23 +22,28 @@ public static class ApplicationConfiguration
     {
         app.MapGet("/", () => "Olve.Trains.UI.Server");
 
-        app.MapPost("/run-command", async Task<Results<Ok<SuccessResponse>, BadRequest<ResultProblem[]>>> (
+        app.MapPost("/run-command", async Task<Results<Ok, BadRequest<ResultProblem[]>>>(
             RunCommandRequest request,
             IRunCommandHandler handler,
             CancellationToken ct) =>
         {
             var result = await handler.RunAsync(request.Command, ct);
-            if (result.TryPickProblems(out var problems))
-                return TypedResults.BadRequest(problems.ToArray());
-
-            return TypedResults.Ok(new SuccessResponse());
+            return result.TryPickProblems(out var problems)
+                ? TypedResults.BadRequest(problems.ToArray())
+                : TypedResults.Ok();
         })
         .WithName("RunCommand")
         .WithOpenApi();
 
-        app.MapGet("/logs", (
+        app.MapGet("/logs", async Task<Results<Ok<IReadOnlyList<LogMessage>>, BadRequest<ResultProblem[]>>>(
             IGetLogsHandler handler,
-            CancellationToken ct) => handler.GetAsync(ct))
+            CancellationToken ct) =>
+            {
+                var result = await handler.GetAsync(ct);
+                return result.TryPickProblems(out var problems, out var logs)
+                    ? TypedResults.BadRequest(problems.ToArray())
+                    : TypedResults.Ok(logs);
+            })
         .WithName("GetLogs")
         .WithOpenApi();
 

@@ -1,13 +1,8 @@
 using Olve.Results;
-using Microsoft.Extensions.Logging;
-namespace Olve.Trains.UI.Server;
+using Olve.Trains.UI.Server.Logs;
+using LogLevel = Olve.Trains.UI.Server.Logs.LogLevel;
 
-public sealed record RunCommandRequest(string Command);
-
-public interface IRunCommandHandler
-{
-    Task<Result> RunAsync(string command, CancellationToken cancellationToken);
-}
+namespace Olve.Trains.UI.Server.Commands;
 
 public sealed class LoggingRunCommandHandler : IRunCommandHandler
 {
