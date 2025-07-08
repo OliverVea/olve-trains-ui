@@ -9,7 +9,7 @@ export default defineConfig({
     },
     {
       command: 'dotnet run --project backend/Olve.Trains.UI.Server.csproj',
-      url: 'http://localhost:5000',
+      url: 'http://localhost:5000/health',
       reuseExistingServer: !process.env.CI,
     },
   ],
