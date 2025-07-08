@@ -37,6 +37,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
   implementation used by the `/run-command` endpoint.
 - `backend/Logs.cs` – contains `LogMessage` and an in-memory
   `IGetLogsHandler` used by the `/logs` endpoint.
+- `backend/ApplicationConfiguration.cs` – registers `/run-command`, `/logs` and
+  `/health` endpoints.
 - `backend/ResultMappingExtensions.cs` – `WithResultMapping()` and
   `WithResultMapping<T>()` convert `Result` values to HTTP responses and
   document 200/400 responses.

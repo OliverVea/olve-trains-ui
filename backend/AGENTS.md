@@ -20,6 +20,7 @@ dotnet run
   the command.
 - `GET /logs` returns an array of `LogMessage` instances via
   `IGetLogsHandler` which stores messages in memory.
+- `GET /health` responds with `"healthy"`.
 - `Olve.Results` handles errors consistently; see `../docs/dependencies/Olve.Results.md`.
  - `WithResultMapping()` and `WithResultMapping<T>()` convert `Result` and `Result<T>`
    return values to `TypedResults` automatically and register `200` and `400`

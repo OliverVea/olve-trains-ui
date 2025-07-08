@@ -21,6 +21,8 @@ All build scripts assume you run them from the repository root using **bun**.
   base URL. This client is the only mechanism for calling the server API.
 - `src/App.svelte` exposes an optional `initialLogs` prop so tests can inject
   starting log data without hitting the network.
+- `src/services/healthService.ts` defines `checkHealth()` which calls the
+  `/health` endpoint.
 
 ## Coding style
 - Prefer modern ES6 syntax.

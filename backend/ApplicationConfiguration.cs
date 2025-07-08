@@ -52,6 +52,11 @@ public static class ApplicationConfiguration
             .WithName("GetLogs")
             .WithOpenApi();
 
+        app.MapGet("/health", () => TypedResults.Ok("healthy"))
+            .Produces<string>()
+            .WithName("GetHealth")
+            .WithOpenApi();
+
         return app;
     }
 }
