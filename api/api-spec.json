@@ -76,6 +76,26 @@
           }
         }
       }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Olve.Trains.UI.Server"
+        ],
+        "operationId": "GetHealth",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -116,8 +136,8 @@
         },
         "nullable": true
       },
-      "IPath": {
-        "type": "string",
+      "IPath": { },
+      "IPath2": {
         "nullable": true
       },
       "LogLevel": {
@@ -141,7 +161,7 @@
             "type": "string"
           },
           "sourcePath": {
-            "$ref": "#/components/schemas/IPath"
+            "$ref": "#/components/schemas/IPath2"
           },
           "sourceLine": {
             "type": "integer",
