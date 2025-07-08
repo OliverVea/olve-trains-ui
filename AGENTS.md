@@ -40,6 +40,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   document 200/400 responses.
 - `.github/workflows/ci.yml` – GitHub Actions workflow that runs `bun run lint`,
   `bun run test` and `bun run e2e` on every push and pull request.
+- `*.DotSettings.user` files from JetBrains Rider are ignored via `.gitignore`.
 ## Linting
 - Run `bun run lint` to check formatting and style across the repo.
   It lints frontend and configuration files via **biome** and verifies C#
