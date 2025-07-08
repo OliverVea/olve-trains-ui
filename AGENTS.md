@@ -10,6 +10,8 @@ using **bun**. Run backend commands from the `backend/` directory using the
 
 - `frontend/` – current Svelte + TypeScript UI. See `frontend/AGENTS.md` for all
   details.
+- The legacy DOM script `frontend/src/app.ts` has been removed; the entrypoint is
+  `frontend/src/main.ts` with `src/App.svelte`.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
   Backend tests live in `backend-tests/` and use
   [TUnit](https://tunit.dev/). Run them with `dotnet test` at the repository root which builds `Olve.Trains.UI.sln`.
