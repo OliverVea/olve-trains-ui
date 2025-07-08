@@ -16,9 +16,9 @@ using **bun**. Run backend commands from the `backend/` directory using the
   Backend tests live in `backend-tests/` and use
   [TUnit](https://tunit.dev/). Run them with `dotnet test` at the repository root which builds `Olve.Trains.UI.sln`.
   Usage details are in `docs/dependencies/TUnit.md`.
- - `e2e-tests/` – Playwright end-to-end specs run with `bun run e2e`.
-   `playwright.config.ts` uses the backend `/health` endpoint to wait until the
-   server is ready.
+- `e2e-tests/` – Playwright end-to-end specs run with `bun run e2e`.
+  `playwright.config.ts` only scans this directory (`testDir`) and waits for the
+  backend `/health` endpoint before starting.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
 - Run `bun run apigen` to regenerate `api/api-spec.json` and the
   TypeScript client under `frontend/src/generated/api`.
