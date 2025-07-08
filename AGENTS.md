@@ -12,7 +12,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   details.
 - `backend/` – ASP.NET Core Minimal API server. See `backend/AGENTS.md`.
   Backend tests live in `backend-tests/` and use
-  [TUnit](https://tunit.dev/). Run them with `dotnet test` from the repository root.
+  [TUnit](https://tunit.dev/). Run them with `dotnet test` at the repository root which builds `Olve.Trains.UI.sln`.
   Usage details are in `docs/dependencies/TUnit.md`.
 - `e2e-tests/` – Playwright end-to-end specs run with `bun run e2e`.
 - `package.json` – scripts for dev, build, lint, test and API spec generation.
@@ -28,6 +28,7 @@ using **bun**. Run backend commands from the `backend/` directory using the
   and manually update `api/api-spec.json` so `IPath` has `{ "type": "string" }`.
 - `api/` – generated OpenAPI specification for the backend.
 - `README.md` – project overview and quickstart instructions.
+- `Olve.Trains.UI.sln` – solution referencing the backend and test projects.
 - `docs/dependencies/` – usage docs for third-party packages, e.g. `Olve.Results.md` and `TUnit.md`.
 - `backend/Api/PathJsonConverter.cs` – JSON converter for `IPath` using `Path.Create`.
 - `backend/RunCommand.cs` – defines `IRunCommandHandler` and a logging

@@ -3,6 +3,7 @@
 This directory hosts the ASP.NET Core Minimal API.
 
 - Built with .NET 9 using `Microsoft.NET.Sdk.Web`.
+- Part of the `Olve.Trains.UI.sln` solution at the repository root.
 - `../scripts/setup-dotnet.sh` installs the required .NET SDK and pre-restores
   packages for offline development. Run it once with network access from the
   repository root.
@@ -34,7 +35,7 @@ dotnet run
 
 ## Testing
 Backend tests live in `../backend-tests/` and use the TUnit framework.
-Run `dotnet test` in `../backend-tests` to execute them.
+Run `dotnet test` from the repository root. The solution `Olve.Trains.UI.sln` references both projects.
 Playwright E2E tests live in `../e2e-tests/` and run with `bun run e2e` from the repo root.
 
 Keep this file updated with any server changes.
